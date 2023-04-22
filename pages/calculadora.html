@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Bunker</title>
+    <script defer src="../index.js" ></script>
+</head>
+<body>
+    <main>
+        <h3>BUNKER ROMANO</h3>
+
+        <div class="principal">
+            <h1>Calculadora cientifica!</h1>
+
+            <div>
+                <form class="calculadora" id="miCalculadora" name="">
+                    <h4>Calculadora</h4>
+                    <label>1er Valor: </label>
+                    <input type="number" name="" id="valor1" autofocus placeholder="Ingrese un numero">
+                    <button onclick="limpiar();">Borrar</button>
+                    <br>
+                    <br>
+    
+                    <label>2do Valor: </label>
+                    <input type="number" name="" id="valor2" autofocus placeholder="Ingrese otro numero">
+                    <button id="igual" onclick="calcular();">=</button>
+                    <br>
+                    <br>
+                    <input name="operacion" id="Suma" type="radio" value="Suma";>Suma</input>
+                    <input name="operacion" id="Resta" type="radio" value="Resta">Resta</input>
+                    <input name="operacion" id="Multiplicacion" type="radio" value="Multiplicacion">Multiplicacion</input>
+                    <input name="operacion" id="Division" type="radio" value="Division">Division</input>
+                    
+                    <p>El resultado es: <span id="el_resultado"></span></p>
+            </form>
+            </div>
+    
+        </div>
+
+
+        
+        <nav class="navBar">
+            <ul class="lista_servicios">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/calculadora.html">Calculadora</a> </li>
+                <li><a href="../pages/cambio_moneda.html">Cambio de moneda</a></li>
+                <li><a href="../pages/motrar_numeros.html">Contador de numeros</a></li>
+                <li><a href="../pages/promedio.html">Promedios</a></li>
+                <li><a href="../pages/prestamos.html">Tasa de intereses</a></li>
+            </ul>
+           </nav>
+    </main>
+    
+
+
+</body>
+</html>
