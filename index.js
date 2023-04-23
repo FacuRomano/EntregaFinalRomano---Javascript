@@ -133,33 +133,68 @@ function promediar(){
 //Esta funcion es la que presento para esta primer entrega, todo lo demas esta en cosntruccion no es nada final y son cosas que quise ir adelantando para mi proyecto final que va a ser una pagina interactiva con datos e informacion sobre javascript. 
 
 //La funcion pide 2 valores en consola: Valoor total y cuotas con las que pago y te calcula los intereses y el IVA y devuelve el resultado en la consola
+const inflacion = (a,b,c) => (a + b + c)/3;
 function intereses(){
     if(window.location.href.includes("prestamos.html")){
         let interesAño = 1.24;
         let interesMes1 = 1;
         let interesMes3 = 1.12;
         let interesMes6 = 1.18;
+        a = 1.948;
+        b = 1.529;
+        c = 1.4202;
         let iva = 1.21;
-        let valorTota= prompt("Ingrese el valor total de su producto");
-        let cantCuotas= prompt("En cuantas cuotas pago?: 1, 3, 6 o 12")
 
-        if (cantCuotas == 12){
-            valorTota = (valorTota * interesAño) * iva;
-            console.log("El valor total de su producto mas IVA es de: " + valorTota)
-            alert("El valor total de su producto + IVA es: " + valorTota) 
-        } else if (cantCuotas == 6) {
-            valorTota = (valorTota * interesMes6) * iva;
-            console.log(valorTota)
-            alert("El valor total de su producto + IVA es: " + valorTota) 
-            
-        } else if (cantCuotas == 3){
-            valorTota = (valorTota * interesMes3) * iva;
-            console.log(valorTota)
-            alert("El valor total de su producto + IVA es: " + valorTota) 
-        }else if (cantCuotas == 1){
-            valorTota = (valorTota * interesMes1 * iva);
-            console.log(valorTota)
-            alert("El valor total de su producto + IVA es: " + valorTota) 
+        alert ("Esta funcion va a determinar si te conviene sacar un producto en cuotas teniendo en cuenta que la inflacion anual es del 63% y la tasa de interes anuel es del 24%");
+        let valorTota= prompt("Ingrese el valor total de su producto");
+        let cantCuotas= prompt("En cuantas cuotas pago?: 1, 3, 6 o 12");
+
+        let inflacionPromedio = inflacion(1.948, 1.529, 1.4202);
+        let valorInflado12 = valorTota * (1 + inflacionPromedio)*iva;
+        let valorInflado6 = valorTota * (1 + (inflacionPromedio / 2))*iva;
+        let valorInflado3 = valorTota * (1 + (inflacionPromedio / 4))*iva;
+        let valorInflado1 = valorTota * (1 + (inflacionPromedio / 12))*iva;
+
+        switch (cantCuotas){
+            case "1":
+                valorTota = (valorTota * interesMes1) * iva;
+                console.log(valorTota)
+                if (valorTota <= valorInflado1){
+                    alert("El valor total de su producto + IVA es: $" + valorTota.toFixed(2) + " y te conviene pagar en 1 cuota porque el valor dentro de un mes va a ser de $" + valorInflado1.toFixed(2))
+                }else{
+                    alert("El valor total de su producto + IVA es: $" + valorTota.toFixed(2) + " y no te conviene pagar en cuotas porque el valor dentro de un mes va a ser de $" + valorInflado1.toFixed(2))
+                }
+                break;
+
+            case "3":
+                valorTota = (valorTota * interesMes3 ) * iva;
+                console.log(valorTota)
+                if (valorTota <= valorInflado3){
+                    alert("El valor total de su producto + IVA es: $" + valorTota.toFixed(2) + " y te conviene pagar en cuotas porque el valor dentro de 3 meses va a ser de $" + valorInflado3.toFixed(2))
+                }else{
+                    alert("El valor total de su producto + IVA es: $" + valorTota.toFixed(2) + " y no te conviene pagar en cuotas porque el valor dentro de 3 meses va a ser de $" + valorInflado3.toFixed(2))
+                }
+                break;
+
+            case "6":
+                valorTota = (valorTota * interesMes6) * iva;
+                console.log(valorTota)
+                if (valorTota <= valorInflado6){
+                    alert("El valor total de su producto + IVA es: $" + valorTota.toFixed(2) + " y te conviene pagar en cuotas porque el valor dentro de 6 meses va a ser de $" + valorInflado6.toFixed(2))
+                }else{
+                    alert("El valor total de su producto + IVA es: $" + valorTota.toFixed(2) + " y no te conviene pagar en cuotas porque el valor dentro de 6 meses va a ser de $" + valorInflado6.toFixed(2))
+                }
+                break;
+
+            case "12":
+                valorTota = (valorTota * interesAño) * iva;
+                console.log(valorTota)
+                if (valorTota <= valorInflado12){
+                    alert("El valor total de su producto + IVA es: $" + valorTota.toFixed(2) + " y te conviene pagar en cuotas porque el valor dentro de un año va a ser de $" + valorInflado12.toFixed(2))
+                }else{
+                    alert("El valor total de su producto + IVA es: $" + valorTota.toFixed(2) + " y no te conviene pagar en cuotas porque el valor dentro de un año 6 meseser de $" + valorInflado12.toFixed(2))
+                }
+                break;
         }
 
     }
