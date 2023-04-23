@@ -195,6 +195,10 @@ function intereses(){
                     alert("El valor total de su producto + IVA es: $" + valorTota.toFixed(2) + " y no te conviene pagar en cuotas porque el valor dentro de un año 6 meseser de $" + valorInflado12.toFixed(2))
                 }
                 break;
+            default:
+                alert("Debe ingresar una opcion válida.");
+                alert("Recargue para comenzar devuelta.");
+                break;
         }
 
     }
