@@ -1,0 +1,214 @@
+body {
+  background-color: #0e5c74;
+  width: 100%; }
+  body main .principal {
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.288);
+    border-radius: 15px; }
+    body main .principal .texto_bienvenida {
+      margin: 10px;
+      padding: 5px;
+      font-size: 1.2rem;
+      color: #ec7f7f;
+      font-weight: bold;
+      display: flex;
+      justify-content: center; }
+    body main .principal h1 {
+      font-size: 2rem;
+      color: #e94646;
+      display: flex;
+      justify-content: center;
+      text-decoration: underline; }
+    body main .principal .boton_inicio {
+      margin: 20px auto;
+      width: 300px;
+      display: flex;
+      justify-content: center; }
+      body main .principal .boton_inicio .boton_programa {
+        margin: 0 auto;
+        width: 300px;
+        height: 80px;
+        background-color: #8f68d6;
+        border-color: white;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold; }
+        body main .principal .boton_inicio .boton_programa:hover {
+          border: double; }
+    body main .principal .minijuego {
+      margin: 0 auto;
+      width: 80%;
+      background-color: white;
+      border-radius: 9px; }
+      body main .principal .minijuego .header_juego {
+        display: inline-flex;
+        list-style-type: none; }
+        body main .principal .minijuego .header_juego .puntaje {
+          margin: 10px;
+          padding: 10px;
+          font-weight: bold;
+          background-color: #f75d7c;
+          display: flex;
+          justify-content: center; }
+      body main .principal .minijuego h3 {
+        margin: 20px;
+        font-weight: bold;
+        font-size: 48px;
+        display: flex;
+        justify-content: center; }
+      body main .principal .minijuego h4 {
+        background-color: rgba(255, 255, 255, 0.541);
+        border-radius: 20px;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center; }
+  body main .navBar {
+    display: flex;
+    width: 100%; }
+    body main .navBar .lista_servicios {
+      margin: 50px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.452);
+      border-radius: 10px;
+      list-style-type: none;
+      display: inline-flex;
+      justify-content: center; }
+      body main .navBar .lista_servicios li {
+        margin: auto;
+        padding: 20px;
+        list-style-type: none;
+        text-decoration: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center; }
+        body main .navBar .lista_servicios li:hover {
+          background-color: rgba(0, 0, 0, 0.164); }
+  body main .formulario {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.288);
+    width: fit-content;
+    border-radius: 15px;
+    display: flex;
+    align-items: center; }
+    body main .formulario p {
+      margin-left: 10px;
+      margin-right: 10px; }
+  body main .calculadora {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.288);
+    width: fit-content;
+    border-radius: 15px;
+    align-items: center; }
+    body main .calculadora button {
+      width: max-content;
+      padding: 5px;
+      border-radius: 8px;
+      border-color: #616161; }
+    body main .calculadora input {
+      font-weight: bold; }
+    body main .calculadora #valor1 {
+      width: 40%;
+      padding: 5px;
+      border-radius: 8px; }
+    body main .calculadora #valor2 {
+      width: 45%;
+      padding: 5px;
+      border-radius: 8px; }
+  body main .contador {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.288);
+    width: fit-content;
+    border-radius: 15px; }
+
+.principal1 {
+  margin: 40px 20px 20px 20px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.288);
+  border-radius: 15px; }
+  .principal1 .texto_bienvenida {
+    margin: 10px;
+    padding: 5px;
+    font-size: 1.2rem;
+    color: #ec7f7f;
+    font-weight: bold;
+    display: flex;
+    justify-content: center; }
+  .principal1 h1 {
+    font-size: 2rem;
+    color: #e94646;
+    display: flex;
+    justify-content: center;
+    text-decoration: underline; }
+  .principal1 .boton_inicio {
+    margin: 20px auto;
+    width: 300px;
+    display: flex;
+    justify-content: center; }
+    .principal1 .boton_inicio .boton_programa {
+      margin: 0 auto;
+      width: 300px;
+      height: 80px;
+      background-color: orange;
+      border: white;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold; }
+  .principal1 .minijuego {
+    margin: 0 auto;
+    width: 80%;
+    background-color: white;
+    border-radius: 9px; }
+    .principal1 .minijuego .header_juego {
+      display: inline-flex;
+      list-style-type: none;
+      justify-content: center; }
+      .principal1 .minijuego .header_juego .nombre_torneo {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center; }
+    .principal1 .minijuego h3 {
+      margin: 20px auto;
+      font-weight: bold;
+      font-size: 48px;
+      display: flex;
+      justify-content: center; }
+    .principal1 .minijuego h4 {
+      background-color: rgba(255, 255, 255, 0.541);
+      border-radius: 20px;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center; }
+  .principal1 .navBar {
+    display: flex;
+    width: 100%; }
+    .principal1 .navBar .lista_servicios {
+      margin: 50px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.452);
+      border-radius: 10px;
+      list-style-type: none;
+      display: inline-flex;
+      justify-content: center; }
+      .principal1 .navBar .lista_servicios li {
+        margin: auto;
+        padding: 20px;
+        list-style-type: none;
+        text-decoration: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center; }
+        .principal1 .navBar .lista_servicios li:hover {
+          background-color: rgba(0, 0, 0, 0.164); }
+        .principal1 .navBar .lista_servicios li a {
+          text-decoration: none;
+          font-size: 20px; }

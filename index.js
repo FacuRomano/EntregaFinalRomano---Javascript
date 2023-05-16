@@ -1,18 +1,32 @@
-/* La funcion jugar esta en desarrollo para proximas entregas, en espera de adquirir nuevos conocimientos!
+ //La funcion jugar esta en desarrollo para proximas entregas, en espera de adquirir nuevos conocimientos!
 
-function jugar(){
-    for (let i = 0; i>=0;){
-    let rta = document.querySelector('input[name="opcion"]:checked');
-        if (opcion !== null) {
-        let r = opcion.id;
-        document.getElementById("puntaje").innerHTML = r;
-        }
-        else {
-        alert("Por favor, seleccione una operación.");
-        }
+ let puntos = 0;
+ let vidas = 3;
+
+ function restarVidas() {
+    if (respuesta == "incorrecta"){
+        vidas = vidas - 1;
     }
-}
-*/
+ }
+
+ function send() {
+    let error = vidas - 1;
+    let correcto = puntos +  parseInt(document.getElementById("correcta").value);
+    let respuesta = document.querySelector('input[name="opcion"]:checked').value;
+
+    while ( vidas > 0){
+        if (respuesta == 10 ){
+            puntos += correcto;
+            alert("feicidades, respondiste correctamente la primer pregunta. Conseguiste 10 puntos!");
+        } else{
+            vidas = error;
+            alert("Lo siento, respondiste incorrectamente, perdiste una vida.");
+        }
+
+    }
+ }
+
+
 
 //===================================================================================================
 //FUNCIONES DE CREACION DE LISTA
@@ -123,7 +137,7 @@ function promediar(){
     let p3 = document.getElementById("pts22").value;
     let texto = "Puntos"
     let rtdo = (parseFloat(p1)+parseFloat(p2)+parseFloat(p3))/3;
-    document.getElementById("promedio").innerHTML = equipo + " promedio: " + rtdo + texto;
+    document.getElementById("promedio").innerHTML = equipo + " promedio: " + rtdo.toFixed(2) + texto;
 }
 
 
@@ -233,6 +247,211 @@ function intereses(){
 */
 
 
+//===================================================================================================
+//Funcion para organizador de torneos
+let primeraArr = [];
+let segundaArr = [];
+let nameTorneo = "HACE TU PROPIO TORNEO";
+let isRunning = true;
+
+class Club {
+    constructor(name, division, puntos) {
+        this.name = name;
+        this.division = division;
+        this.puntos = puntos;
+    }
+}
+
+function initProgram() {
+    while (isRunning) {
+        let opc = prompt(`============================= \n${nameTorneo} \n============================= \nElegi una opcion: \n1. Darle Nombre a tu torneo \n2. Agregar club \n3. Eliminar equipos \n4. Ver clubes \n5. Tabla de posiciones \n6. Actualizar puntajes \n7. Sortear partidos \n8. Cancelar`);
+
+        switch (opc) {
+            case "1":
+                darNombre()
+                break;
+            case "2":
+                pedirEquipos();
+                break;
+            case "3":
+                eliminarEquipo()
+                break;
+            case "4":
+                verClubesOrdenados()
+                break;
+            case "5":
+                verTablaPosiciones()
+                break;
+            case "6":
+                actualizarPuntajes()
+                break;
+            case "7":
+                let opc1 = parseInt(prompt(`============================= \n${nameTorneo} \n============================= \nElegi una opcion: \n1. Sortear partidos de la fecha \n2. Cancelar`));
+                if (opc1 == 1) {
+                    sortearPartidos();
+                }else{
+                    break;
+                }
+                break;
+            case "8":
+                isRunning = false;
+                break;
+            default:
+                alert("Opción inválida");
+                break;
+        }
+    }
+}
+
+
+
+function pedirEquipos() {
+    
+    let contador = parseInt(prompt(`Ingrese la cantidad de equipos de su torneo: `));
+
+    for (let i = 0; i < contador; i++) {
+        while (isRunning) {
+        
+            let name = prompt(`Ingresa el nombre del club ${i+1}:`);
+            let division = prompt("Ingresa la division del club -Primera o Segunda- : ");
+            let puntos = parseInt(prompt("Ingrese los puntos que lleva el club en esa division"));
+    
+            if (name === "" || division === "" || isNaN(puntos)) {
+                alert("No ingresaste un dato válido");
+            } else {
+                let equipo = new Club(name, division, puntos);
+                if (division.toLowerCase() === "primera") {
+                    primeraArr.push(equipo);
+                } else if (division.toLowerCase() === "segunda") {
+                    segundaArr.push(equipo);
+                }
+                break;
+            }
+        }
+        
+    }
+    
+}
+
+
+function darNombre(){
+    nameTorneo = prompt("Ingrese el nombre para su torneo: ");
+    document.getElementById("nameTorneo").innerHTML = nameTorneo;
+}
+
+
+function eliminarEquipo() {
+    let division = prompt("Ingresa la división del equipo que deseas eliminar -Primera o Segunda- : ");
+
+    let equipoArray = (division.toLowerCase() === "primera") ? primeraArr : segundaArr;
+
+    if (equipoArray.length === 0) {
+        alert("No hay equipos en la división especificada");
+        return;
+    }
+
+    let opciones = "";
+    for (let i = 0; i < equipoArray.length; i++) {
+        opciones += `${i + 1}. ${equipoArray[i].name}\n`;
+    }
+
+    let equipoIndex = parseInt(prompt(`Elige el número del equipo que deseas eliminar:\n${opciones}`));
+    if (isNaN(equipoIndex) || equipoIndex < 1 || equipoIndex > equipoArray.length) {
+        alert("Opción inválida");
+        return;
+    }
+
+    let equipoEliminado = equipoArray.splice(equipoIndex - 1, 1)[0];
+    alert(`Se ha eliminado el equipo "${equipoEliminado.name}" de la división "${equipoEliminado.division}"`);
+}
+
+
+function verClubesOrdenados() {
+    let todosClubes = [...primeraArr, ...segundaArr];
+    todosClubes.sort((a, b) => a.name.localeCompare(b.name));
+
+    let listaClubes = "Lista de Clubes Ordenados Alfabéticamente:\n\n";
+    todosClubes.forEach((equipo, index) => {
+        listaClubes += `${index + 1}. ${equipo.name}\n`;
+    });
+
+    alert(listaClubes);
+}
+
+
+function verTablaPosiciones() {
+    let primeraPosiciones = primeraArr.slice().sort((a, b) => b.puntos - a.puntos);
+    let segundaPosiciones = segundaArr.slice().sort((a, b) => b.puntos - a.puntos);
+  
+    let tablaPosiciones = "Tabla de Posiciones - Primera División:\n";
+    tablaPosiciones += "===================================\n";
+    primeraPosiciones.forEach((equipo, index) => {
+      tablaPosiciones += `${index + 1}. ${equipo.name} - Puntos: ${equipo.puntos}\n`;
+    });
+  
+    tablaPosiciones += "\nTabla de Posiciones - Segunda División:\n";
+    tablaPosiciones += "===================================\n";
+    segundaPosiciones.forEach((equipo, index) => {
+      tablaPosiciones += `${index + 1}. ${equipo.name} - Puntos: ${equipo.puntos}\n`;
+    });
+  
+    alert(tablaPosiciones);
+  }
+
+
+function actualizarPuntajes() {
+    let todosClubes = [...primeraArr, ...segundaArr];
+  
+    todosClubes.forEach((equipo, index) => {
+      let nuevoPuntaje = parseInt(prompt(`Ingresa el nuevo puntaje para ${equipo.name}:`));
+      if (!isNaN(nuevoPuntaje)) {
+        equipo.puntos = nuevoPuntaje;
+      }
+    });
+  
+    let listaClubes = "Puntajes Actualizados:\n\n";
+    todosClubes.forEach((equipo, index) => {
+      listaClubes += `${index + 1}. ${equipo.name} - Puntos: ${equipo.puntos}\n`;
+    });
+  
+    alert(listaClubes);
+  }
+  
+
+  function sortearPartidos() {
+    if (primeraArr.length < 2 || segundaArr.length < 2) {
+      alert("No hay suficientes equipos para sortear los partidos.");
+      return;
+    }
+  
+    let partidosPrimera = generarPartidos(primeraArr);
+    let partidosSegunda = generarPartidos(segundaArr);
+  
+    let todosPartidos = [...partidosPrimera, ...partidosSegunda];
+  
+    alert(`Partidos de la fecha:\n\n${todosPartidos.join("\n")}`);
+  }
+  
+  function generarPartidos(equipos) {
+    let partidos = [];
+    let equiposRestantes = equipos.slice();
+  
+    while (equiposRestantes.length > 1) {
+      let equipoLocal = equiposRestantes.shift();
+  
+      equiposRestantes.forEach((equipoVisitante) => {
+        let partido = `${equipoLocal.name} vs ${equipoVisitante.name}`;
+        partidos.push(partido);
+      });
+    }
+  
+    return partidos;
+  }
+  
+  
+  
+
+  
 
 
 //===================================================================================================

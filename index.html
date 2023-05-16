@@ -4,55 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Bunker</title>
 </head>
 <body>
     <main>
-        <h3>BUNKER ROMANO</h3>
+        <h3>TODOJAVASCRIPT </h3>
 
         <section class="principal">
-            <h1>Bienvenido a nuestra casa!</h1>
-            <p class="texto_bienvenida">Hola, gracias por su visita en nuestro refugio del programador! Esperamos que su visita sea divertida. Nuestro objetivo es ofrercerle al cliente soluciones a inconvenientes del daia a dia, por eso les dejamos algunos ejemplos de los servicios que ofrecemos. Antes de empezar les dejo un minijuego para que se conozcan un poco mas y se prueben a ver que tanto saben de Java Sript:
+            <h1>Bienvenido a tododeportes!</h1>
+            <p class="texto_bienvenida">Hola, gracias por su visita en nuestro refugio del programador! Esperamos que su visita sea divertida y pueda organizar con facilidad sus torneos.
             </p>
+
+            <div class="boton_inicio">
+                <button class="boton_programa" onclick="initProgram()">INICIAR PROGRAMA</button>
+            </div>
+
 
             <div class="minijuego">
                 <ul class="header_juego">
-                    <li><h3>¿Cuanto sabes de JavaScript?</h3></li>
-                    <li><p class="puntaje">Puntos: <span id="puntaje"></span></p></li>
+                    <li><h3 class="nombre_torneo"><span id="nameTorneo"></h3></li>
                 </ul>
-                <img class="img_juego" src="./assets/imagenMinijuego.png" alt="Imagen_De_Minijuego">
-
-                <form action=""></form>
-
-                <form class="opciones">
-                    <h4>¿Que es JS?</h4>
-                    <input name="opcion" id="correcta" type="radio" value="5" onclick="jugar()">Un lenguaje de programacion</input>
-                    <input name="opcion" id="falso" type="radio" value="0" onclick="jugar()">Un Framework para html</input>
-                    <input name="opcion" id="falso" type="radio" value="0" onclick="jugar()">Un complemento del css</input>
-                </form>
-
-
             </div>
 
-           
-           
-           
-           
-           <nav class="navBar">
-            <ul class="lista_servicios">
-                <li><a href="./index.html">Inicio</a></li>
-                <li><a href="./pages/calculadora.html">Calculadora</a> </li>
-                <li><a href="./pages/cambio_moneda.html">Cambio de moneda</a></li>
-                <li><a href="./pages/motrar_numeros.html">Contador de numeros</a></li>
-                <li><a href="./pages/promedio.html">Promedios</a></li>
-                <li><a href="./pages/prestamos.html">Tasa de intereses</a></li>
-            </ul>
-           </nav>
             
         </section>
 
-
+        <section class="principal1">
+            <h1>Bienvenido a nuestro bunker!</h1>
+            <p class="texto_bienvenida">Hola, gracias por su visita en nuestro refugio del programador! Esperamos que su visita sea divertida. Nuestro objetivo es ofrercerle al cliente soluciones a inconvenientes del daia a dia y entretenimiento, por eso les dejamos algunos ejemplos de los servicios que ofrecemos. En nuestra seccion principal tenemos un organizador de torneos para que puedan divertirse en sus competencias online
+            </p>
+            <nav class="navBar">
+                <ul class="lista_servicios">
+                    <li><a href="./index.html">Inicio</a></li>
+                    <li><a href="./pages/calculadora.html">Calculadora</a> </li>
+                    <li><a href="./pages/cambio_moneda.html">Cambio de moneda</a></li>
+                    <li><a href="./pages/motrar_numeros.html">Contador de numeros</a></li>
+                    <li><a href="./pages/promedio.html">Promedios</a></li>
+                    <li><a href="./pages/prestamos.html">Tasa de intereses</a></li>
+                </ul>
+               </nav>
+        </section>
     </main>
     
 

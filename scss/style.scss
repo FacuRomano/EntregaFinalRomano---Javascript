@@ -1,0 +1,289 @@
+body{
+    background-color:rgb(14, 92, 116);
+    width: 100%;
+    main{
+        .principal{
+            margin: 20px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.288);
+            border-radius: 15px;
+            .texto_bienvenida{
+                margin: 10px;
+                padding: 5px;
+                font-size: 1.2rem;
+                color: rgb(236, 127, 127);
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+            }
+
+            h1{
+                font-size: 2rem;
+                color: rgb(233, 70, 70);
+                display: flex;
+                justify-content: center;
+                text-decoration: underline;
+            }
+            .boton_inicio{
+                margin: 20px auto;
+                width: 300px;
+                display: flex;
+                justify-content: center;
+                .boton_programa{
+                    margin: 0 auto;
+                    width: 300px;
+                    height: 80px;
+                    background-color: rgb(143, 104, 214);
+                    border-color:rgb(255, 255, 255);
+                    color: rgb(0, 0, 0);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    &:hover{
+                        border: double;
+                        
+                    }
+                }
+            }
+            .minijuego{
+                margin: 0 auto;
+                width: 80%;
+                background-color: white;
+                border-radius: 9px;
+
+                .header_juego{
+                    display: inline-flex;
+                    list-style-type: none;
+                    .puntaje{
+                        margin: 10px;
+                        padding: 10px;
+                        font-weight: bold;
+                        background-color:rgb(247, 93, 124);
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+
+                h3{
+                    margin: 20px;
+                    font-weight: bold;
+                    font-size: 48px;
+                    display: flex;
+                    justify-content: center;
+                }
+                h4{
+                    background-color: rgba(255, 255, 255, 0.541);
+                    border-radius: 20px;
+                    font-size: 1.5rem;
+                    display: flex;
+                    justify-content: center;
+                }
+                
+
+            }
+                
+            }
+            .navBar{
+                display: flex;
+                width: 100%;
+                .lista_servicios{
+                    margin: 50px auto;
+                    padding: 20px;
+                    background-color: rgba(255, 255, 255, 0.452);
+                    border-radius: 10px;
+                    list-style-type: none;
+                    display: inline-flex;
+                    justify-content: center ;
+                    li{
+                        margin: auto;
+                        padding: 20px;
+                        list-style-type: none;
+                        text-decoration: none;
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items:center;
+                        &:hover{
+                            background-color: rgba(0, 0, 0, 0.164);
+                        }
+                    }
+                    
+                    
+                    
+                
+                    
+                }
+            }
+
+            .formulario{
+                margin: 20px auto;
+                padding: 10px;
+                background-color: rgba(0, 0, 0, 0.288);
+                width:fit-content;
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                p{
+                    margin-left: 10px;
+                    margin-right: 10px;
+                
+                }
+                
+            }
+
+            .calculadora{
+                margin: 20px auto;
+                padding: 10px;
+                background-color: rgba(0, 0, 0, 0.288);
+                width:fit-content;
+                border-radius: 15px;
+                align-items: center;
+
+                button{
+                    width: max-content;
+                    padding: 5px;
+                    border-radius: 8px;
+                    border-color: rgb(97, 97, 97);
+                }
+
+                input{
+                    font-weight: bold;
+                }
+                
+                #valor1{
+                    width:40%;
+                    padding: 5px;
+                    border-radius: 8px;
+                }
+                #valor2{
+                    width:45%;
+                    padding: 5px;
+                    border-radius: 8px;
+                }
+            }
+
+            .contador{
+                margin: 20px auto;
+                padding: 10px;
+                background-color: rgba(0, 0, 0, 0.288);
+                width:fit-content;
+                border-radius: 15px;
+            }
+        
+        }
+        
+    }
+
+
+
+.principal1{
+    margin: 40px 20px 20px 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.288);
+    border-radius: 15px;
+    .texto_bienvenida{
+        margin: 10px;
+        padding: 5px;
+        font-size: 1.2rem;
+        color: rgb(236, 127, 127);
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+    }
+
+    h1{
+        font-size: 2rem;
+        color: rgb(233, 70, 70);
+        display: flex;
+        justify-content: center;
+        text-decoration: underline;
+    }
+    .boton_inicio{
+        margin: 20px auto;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        .boton_programa{
+            margin: 0 auto;
+            width: 300px;
+            height: 80px;
+            background-color: orange;
+            border: white;
+            color: rgb(0, 0, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    }
+    .minijuego{
+        margin: 0 auto;
+        width: 80%;
+        background-color: white;
+        border-radius: 9px;
+
+        .header_juego{
+            display: inline-flex;
+            list-style-type: none;
+            justify-content: center;
+            .nombre_torneo{
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        h3{
+            margin: 20px auto;
+            font-weight: bold;
+            font-size: 48px;
+            display: flex;
+            justify-content: center;
+        }
+        h4{
+            background-color: rgba(255, 255, 255, 0.541);
+            border-radius: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        
+    }
+    .navBar{
+        display: flex;
+        width: 100%;
+        .lista_servicios{
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.452);
+            border-radius: 10px;
+            list-style-type: none;
+            display: inline-flex;
+            justify-content: center ;
+            li{
+                margin: auto;
+                padding: 20px;
+                list-style-type: none;
+                text-decoration: none;
+                display: inline-flex;
+                justify-content: center;
+                align-items:center;
+                &:hover{
+                    background-color: rgba(0, 0, 0, 0.164);
+                }
+                a{
+                    text-decoration: none;
+                    font-size: 20px;
+                }
+            }
+            
+            
+            
+        
+            
+        }
+    }
+}
