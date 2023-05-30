@@ -1,3 +1,4 @@
+@import url("eventosDeportivos");
 body {
   background-color: #0e5c74;
   width: 100%; }
@@ -6,6 +7,12 @@ body {
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.288);
     border-radius: 15px; }
+    body main .principal h2 {
+      font-size: 2rem;
+      color: #e94646;
+      display: flex;
+      justify-content: center;
+      text-decoration: underline; }
     body main .principal .texto_bienvenida {
       margin: 10px;
       padding: 5px;
@@ -14,12 +21,6 @@ body {
       font-weight: bold;
       display: flex;
       justify-content: center; }
-    body main .principal h1 {
-      font-size: 2rem;
-      color: #e94646;
-      display: flex;
-      justify-content: center;
-      text-decoration: underline; }
     body main .principal .boton_inicio {
       margin: 20px auto;
       width: 300px;
@@ -39,99 +40,116 @@ body {
         font-weight: bold; }
         body main .principal .boton_inicio .boton_programa:hover {
           border: double; }
-    body main .principal .minijuego {
+    body main .principal .programa {
       margin: 0 auto;
       width: 80%;
-      background-color: white;
-      border-radius: 9px; }
-      body main .principal .minijuego .header_juego {
-        display: inline-flex;
-        list-style-type: none; }
-        body main .principal .minijuego .header_juego .puntaje {
-          margin: 10px;
-          padding: 10px;
+      background-color: #9e9e9e;
+      border-radius: 9px;
+      align-items: center; }
+      body main .principal .programa .formularioTitulo {
+        display: flex;
+        justify-content: center;
+        background-color: #8f68d6; }
+        body main .principal .programa .formularioTitulo h3 {
+          width: 100%;
+          margin: 0 auto;
           font-weight: bold;
-          background-color: #f75d7c;
+          font-size: 48px;
           display: flex;
           justify-content: center; }
-      body main .principal .minijuego h3 {
-        margin: 20px;
-        font-weight: bold;
-        font-size: 48px;
+        body main .principal .programa .formularioTitulo #inputTitulo {
+          width: 100%;
+          margin: 0 auto;
+          font-weight: bold;
+          font-size: 48px;
+          background-color: #8f68d6;
+          display: flex; }
+        body main .principal .programa .formularioTitulo #formularioEdicion {
+          display: flex; }
+      body main .principal .programa .contenedor {
         display: flex;
-        justify-content: center; }
-      body main .principal .minijuego h4 {
-        background-color: rgba(255, 255, 255, 0.541);
-        border-radius: 20px;
-        font-size: 1.5rem;
-        display: flex;
-        justify-content: center; }
-  body main .navBar {
-    display: flex;
-    width: 100%; }
-    body main .navBar .lista_servicios {
-      margin: 50px auto;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.452);
-      border-radius: 10px;
-      list-style-type: none;
-      display: inline-flex;
-      justify-content: center; }
-      body main .navBar .lista_servicios li {
-        margin: auto;
-        padding: 20px;
-        list-style-type: none;
-        text-decoration: none;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center; }
-        body main .navBar .lista_servicios li:hover {
-          background-color: rgba(0, 0, 0, 0.164); }
-  body main .formulario {
-    margin: 20px auto;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.288);
-    width: fit-content;
-    border-radius: 15px;
-    display: flex;
-    align-items: center; }
-    body main .formulario p {
-      margin-left: 10px;
-      margin-right: 10px; }
-  body main .calculadora {
-    margin: 20px auto;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.288);
-    width: fit-content;
-    border-radius: 15px;
-    align-items: center; }
-    body main .calculadora button {
-      width: max-content;
-      padding: 5px;
-      border-radius: 8px;
-      border-color: #616161; }
-    body main .calculadora input {
-      font-weight: bold; }
-    body main .calculadora #valor1 {
-      width: 40%;
-      padding: 5px;
-      border-radius: 8px; }
-    body main .calculadora #valor2 {
-      width: 45%;
-      padding: 5px;
-      border-radius: 8px; }
-  body main .contador {
-    margin: 20px auto;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.288);
-    width: fit-content;
-    border-radius: 15px; }
+        flex-direction: row;
+        justify-content: space-between; }
+        body main .principal .programa .contenedor .listaEquipos {
+          margin: 10px auto;
+          padding: 20px;
+          width: min-content;
+          background-color: rgba(255, 0, 0, 0.541);
+          border-radius: 20px;
+          font-size: 1rem; }
+          body main .principal .programa .contenedor .listaEquipos form {
+            display: flex;
+            flex-direction: column;
+            align-items: center; }
+            body main .principal .programa .contenedor .listaEquipos form label {
+              margin-bottom: 5px;
+              background-color: rgba(255, 255, 255, 0.747); }
+            body main .principal .programa .contenedor .listaEquipos form input {
+              margin-bottom: 10px;
+              padding: 5px; }
+          body main .principal .programa .contenedor .listaEquipos .casillaEquipos {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px; }
+          body main .principal .programa .contenedor .listaEquipos .token {
+            display: flex;
+            align-items: center;
+            background-color: #e9e9e9;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px; }
+            body main .principal .programa .contenedor .listaEquipos .token .token span {
+              margin-right: 5px; }
+            body main .principal .programa .contenedor .listaEquipos .token .delete {
+              width: 12px;
+              height: 12px;
+              cursor: pointer;
+              margin-left: 5px;
+              background-color: #b8b8b8;
+              display: flex;
+              justify-content: center;
+              align-items: center; }
+              body main .principal .programa .contenedor .listaEquipos .token .delete:hover {
+                background-color: #6b6b6b; }
+        body main .principal .programa .contenedor .tablaEquipos {
+          margin: 10px auto;
+          padding: 10px;
+          background-color: rgba(255, 0, 0, 0.541);
+          border-radius: 20px;
+          font-size: 1rem; }
+          body main .principal .programa .contenedor .tablaEquipos .thead {
+            background-color: rgba(255, 255, 255, 0.527); }
 
 .principal1 {
   margin: 40px 20px 20px 20px;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.288);
   border-radius: 15px; }
+  .principal1 h1 {
+    font-size: 2rem;
+    color: #e94646;
+    display: flex;
+    justify-content: center;
+    text-decoration: underline; }
+  .principal1 h2 {
+    font-size: 2rem;
+    color: #e94646;
+    display: flex;
+    justify-content: center;
+    text-decoration: underline; }
+  .principal1 h3 {
+    margin: 20px auto;
+    font-weight: bold;
+    font-size: 48px;
+    display: flex;
+    justify-content: center; }
+  .principal1 h4 {
+    background-color: rgba(255, 255, 255, 0.541);
+    border-radius: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center; }
   .principal1 .texto_bienvenida {
     margin: 10px;
     padding: 5px;
@@ -140,75 +158,63 @@ body {
     font-weight: bold;
     display: flex;
     justify-content: center; }
-  .principal1 h1 {
-    font-size: 2rem;
-    color: #e94646;
-    display: flex;
-    justify-content: center;
-    text-decoration: underline; }
-  .principal1 .boton_inicio {
+  .principal1 .formulario {
     margin: 20px auto;
-    width: 300px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.288);
+    width: fit-content;
+    border-radius: 15px;
     display: flex;
-    justify-content: center; }
-    .principal1 .boton_inicio .boton_programa {
-      margin: 0 auto;
-      width: 300px;
-      height: 80px;
-      background-color: orange;
-      border: white;
-      color: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
+    align-items: center; }
+    .principal1 .formulario p {
+      margin-left: 10px;
+      margin-right: 10px; }
+  .principal1 .calculadora {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.288);
+    width: fit-content;
+    border-radius: 15px;
+    align-items: center; }
+    .principal1 .calculadora button {
+      width: max-content;
+      padding: 5px;
+      border-radius: 8px;
+      border-color: #616161; }
+    .principal1 .calculadora input {
       font-weight: bold; }
-  .principal1 .minijuego {
-    margin: 0 auto;
-    width: 80%;
-    background-color: white;
-    border-radius: 9px; }
-    .principal1 .minijuego .header_juego {
-      display: inline-flex;
-      list-style-type: none;
-      justify-content: center; }
-      .principal1 .minijuego .header_juego .nombre_torneo {
-        margin: 0 auto;
-        display: flex;
-        justify-content: center; }
-    .principal1 .minijuego h3 {
-      margin: 20px auto;
-      font-weight: bold;
-      font-size: 48px;
-      display: flex;
-      justify-content: center; }
-    .principal1 .minijuego h4 {
-      background-color: rgba(255, 255, 255, 0.541);
-      border-radius: 20px;
-      font-size: 1.5rem;
-      display: flex;
-      justify-content: center; }
+    .principal1 .calculadora #valor1 {
+      width: 40%;
+      padding: 5px;
+      border-radius: 8px; }
+    .principal1 .calculadora #valor2 {
+      width: 45%;
+      padding: 5px;
+      border-radius: 8px; }
+  .principal1 .contador {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.288);
+    width: fit-content;
+    border-radius: 15px; }
   .principal1 .navBar {
     display: flex;
     width: 100%; }
     .principal1 .navBar .lista_servicios {
       margin: 50px auto;
       padding: 20px;
+      width: 90%;
+      max-width: 100%;
       background-color: rgba(255, 255, 255, 0.452);
       border-radius: 10px;
-      list-style-type: none;
-      display: inline-flex;
-      justify-content: center; }
+      list-style: none; }
       .principal1 .navBar .lista_servicios li {
-        margin: auto;
-        padding: 20px;
-        list-style-type: none;
-        text-decoration: none;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center; }
+        display: inline-block;
+        text-align: center; }
         .principal1 .navBar .lista_servicios li:hover {
           background-color: rgba(0, 0, 0, 0.164); }
         .principal1 .navBar .lista_servicios li a {
+          padding: 20px;
           text-decoration: none;
-          font-size: 20px; }
+          font-size: 20px;
+          display: block; }

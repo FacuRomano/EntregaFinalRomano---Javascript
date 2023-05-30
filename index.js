@@ -1,5 +1,5 @@
  //La funcion jugar esta en desarrollo para proximas entregas, en espera de adquirir nuevos conocimientos!
-
+/*
  let puntos = 0;
  let vidas = 3;
 
@@ -28,7 +28,8 @@
 
 
 
-//===================================================================================================
+//
+*///===================================================================================================
 //FUNCIONES DE CREACION DE LISTA
 
 //Esta funcion muestra en pantalla una cantidad de numeros indicada por el usuario
@@ -50,6 +51,7 @@ function cancelar(){
     lista.innerHTML = "";
 }
 
+/*
 //===================================================================================================
 //FUNCIONES DE CASA DE CABMIO
 
@@ -248,96 +250,216 @@ function intereses(){
 
 
 //===================================================================================================
+//===================================================================================================
 //Funcion para organizador de torneos
-let primeraArr = [];
-let segundaArr = [];
-let nameTorneo = "HACE TU PROPIO TORNEO";
-let isRunning = true;
 
-class Club {
-    constructor(name, division, puntos) {
-        this.name = name;
-        this.division = division;
-        this.puntos = puntos;
+//Editar El nombre del torneo
+const tituloElemento = document.getElementById("titulo");
+const botonEdicion = document.getElementById("botonEdicion");
+const formularioEdicion = document.getElementById("formularioEdicion");
+const inputTitulo = document.getElementById("inputTitulo");
+
+botonEdicion.addEventListener("click", function() {
+  tituloElemento.style.display = "none";
+  formularioEdicion.style.display = "block";
+  inputTitulo.focus();
+});
+
+formularioEdicion.addEventListener("submit", function(event) {
+  event.preventDefault();
+  tituloElemento.innerText = inputTitulo.value.trim();
+  tituloElemento.style.display = "flex";
+  formularioEdicion.style.display = "none";
+});
+
+  //Agregar y Clasificar los equipos ingresados
+  let equipos = [];
+
+  let nameTorneo = "HACE TU PROPIO TORNEO";
+  let isRunning = true;
+  
+  class Club {
+    constructor(name, puntos) {
+      this.name = name;
+      this.puntos = puntos;
     }
-}
+  }
+  
+  const formEquipos = document.querySelector("#formEquipos");
+  const listaEquipos = document.querySelector("#listaEquipos");
+  const agregar = document.querySelector("#agregar");
+  const equiposHidden = document.querySelector("#equiposHidden");
+  const casillaEquipos = document.querySelector("#casillaEquipos");
+  
+  formEquipos.addEventListener("submit", pedirEquipos);
+  let contadorE = 1;
 
-function initProgram() {
-    while (isRunning) {
-        let opc = prompt(`============================= \n${nameTorneo} \n============================= \nElegi una opcion: \n1. Darle Nombre a tu torneo \n2. Agregar club \n3. Eliminar equipos \n4. Ver clubes \n5. Tabla de posiciones \n6. Actualizar puntajes \n7. Sortear partidos \n8. Cancelar`);
+  function pedirEquipos(e) {
+    e.preventDefault();
+  
+    let name = document.querySelector("#equipo").value;
+    let puntos = parseInt(document.querySelector("#puntos").value);
+  
+    if (name === "" || isNaN(puntos)) {
+      alert("No ingresaste un dato válido");
+    } else {
+      let equipo = new Club(name, puntos);
+      equipos.push(equipo);
+  
+      // Almacenar los equipos en el local Storage
+      localStorage.setItem("equipos", JSON.stringify(equipos));
+      const equiposGuardados = JSON.parse(localStorage.getItem("equipos"));
+      console.log(equiposGuardados);
+  
+      // Agregar el equipo a la tabla
+      const tablaEquipos = document.querySelector(".tablaEquipos tbody");
+      const nuevaFila = document.createElement("tr");
+  
+      nuevaFila.classList.add(`equipo-${contadorE}`);
+      nuevaFila.innerHTML = `
+        <td>${equipos.length}</td>
+        <td>${equipo.name}</td>
+        <td><input type="number" class="inputPuntos" value="${equipo.puntos}" /></td>
+        <td><button class="eliminarEquipo botonEliminarEquipos">x</button></td>
+      `;
+      tablaEquipos.appendChild(nuevaFila);
+      contadorE++;
+  
+      // Asignar evento de eliminar al botón de este equipo
+      const eliminarEquipo = nuevaFila.querySelector(".eliminarEquipo");
+      eliminarEquipo.addEventListener("click", deleteEquipo);
+    }
+    formEquipos.reset();
+  }
+  
+  function deleteEquipo() {
+    // Obtener el índice del equipo a eliminar
+    const equipoIndex = parseInt(this.parentNode.parentNode.classList[0].split("-")[1]);
+  
+    // Eliminar el equipo del arreglo
+    let equipoEliminado = equipos.splice(equipoIndex - 1, 1)[0];
+  
+    // Actualizar la tabla de posiciones
+    actualizarTablaPosiciones();
+  }
 
-        switch (opc) {
-            case "1":
-                darNombre()
-                break;
-            case "2":
-                pedirEquipos();
-                break;
-            case "3":
-                eliminarEquipo()
-                break;
-            case "4":
-                verClubesOrdenados()
-                break;
-            case "5":
-                verTablaPosiciones()
-                break;
-            case "6":
-                actualizarPuntajes()
-                break;
-            case "7":
-                let opc1 = parseInt(prompt(`============================= \n${nameTorneo} \n============================= \nElegi una opcion: \n1. Sortear partidos de la fecha \n2. Cancelar`));
-                if (opc1 == 1) {
-                    sortearPartidos();
-                }else{
-                    break;
-                }
-                break;
-            case "8":
-                isRunning = false;
-                break;
-            default:
-                alert("Opción inválida");
-                break;
+    function actualizarTablaPosiciones(){
+        const tablaEquipos = document.querySelector(".tablaEquipos tbody");
+
+        while (tablaEquipos.firstChild){
+        tablaEquipos.removeChild(tablaEquipos.firstChild);
         }
-    }
+
+        equipos.forEach((equipo, index)=>{
+            const nuevaFila = document.createElement("tr");
+
+            nuevaFila.classList.add(`equipo-${index+1}`);
+            nuevaFila.innerHTML = `
+                <td>${index +1}</td>
+                <td>${equipo.name}</td>
+                <td><input type="number" class="inputPuntos" value="${equipo.puntos}" /></td>
+                <td><button class="eliminarEquipo botonEliminarEquipos">x</button></td>
+            `;
+            tablaEquipos.appendChild(nuevaFila);
+
+
+        const eliminarEquipo = nuevaFila.querySelector(".eliminarEquipo");
+        eliminarEquipo.addEventListener('click', deleteEquipo);
+    })}
+  
+ 
+
+
+
+  
+//===================================================================================================
+//===================================================================================================
+  //Editar la Tabla creada
+ // Editar la Tabla creada
+const botonEditarTabla = document.querySelector('#editarTabla');
+botonEditarTabla.addEventListener('click', editarTabla);
+
+function editarTabla() {
+    const filasEquipos = document.querySelectorAll('#tablaPosiciones tbody tr');
+  
+    filasEquipos.forEach(fila => {
+      const celdaEquipo = fila.querySelector('td:nth-child(2)');
+      const nombreEquipo = celdaEquipo.textContent;
+  
+      const inputEquipo = document.createElement('input');
+      inputEquipo.type = 'text';
+      inputEquipo.value = nombreEquipo;
+  
+      celdaEquipo.textContent = '';
+      celdaEquipo.appendChild(inputEquipo);
+    });
+  
+    const botonGuardar = document.createElement('button');
+    botonGuardar.textContent = 'Guardar';
+    botonGuardar.onclick = guardarCambios;
+  
+    const celdaBoton = document.querySelector('#editarTabla');
+    celdaBoton.textContent = '';
+    celdaBoton.appendChild(botonGuardar);
+  }
+  
+  function guardarCambios() {
+    const filasEquipos = document.querySelectorAll('#tablaPosiciones tbody tr');
+  
+    filasEquipos.forEach(fila => {
+      const celdaEquipo = fila.querySelector('td:nth-child(2)');
+      const inputEquipo = celdaEquipo.querySelector('input');
+  
+      const nuevoNombreEquipo = inputEquipo.value;
+  
+      celdaEquipo.textContent = nuevoNombreEquipo;
+    });
+  
+    const botonEditar = document.createElement('button');
+    botonEditar.textContent = 'Editar';
+    botonEditar.onclick = editarTabla;
+  
+    const celdaBoton = document.querySelector('#editarTabla');
+    celdaBoton.textContent = '';
+    celdaBoton.appendChild(botonEditar);
+  }
+  
+
+
+
+//===================================================================================================
+//===================================================================================================
+//Local Storage y Json
+
+if (typeof (Storage) != `undefined`){
+console.log(Storage);
+
+localStorage.setItem("equipos", equipos);
+
+} else{
+    alert("storage no es compatible en este navegador");
 }
 
 
+/*
+localStorage.setItem('equipos', JSON.stringify(equipos));
+localStorage.setItem('tituloElemento', tituloElemento.innerText);
 
-function pedirEquipos() {
-    
-    let contador = parseInt(prompt(`Ingrese la cantidad de equipos de su torneo: `));
+const equiposGuardados = JSON.parse(localStorage.getItem('equipos'));
+const tituloElementoGuardado = localStorage.getItem('tituloElemento');
 
-    for (let i = 0; i < contador; i++) {
-        while (isRunning) {
-        
-            let name = prompt(`Ingresa el nombre del club ${i+1}:`);
-            let division = prompt("Ingresa la division del club -Primera o Segunda- : ");
-            let puntos = parseInt(prompt("Ingrese los puntos que lleva el club en esa division"));
-    
-            if (name === "" || division === "" || isNaN(puntos)) {
-                alert("No ingresaste un dato válido");
-            } else {
-                let equipo = new Club(name, division, puntos);
-                if (division.toLowerCase() === "primera") {
-                    primeraArr.push(equipo);
-                } else if (division.toLowerCase() === "segunda") {
-                    segundaArr.push(equipo);
-                }
-                break;
-            }
-        }
-        
-    }
-    
-}
+console.log(equiposGuardados);
+console.log(tituloElementoGuardado);
 
 
-function darNombre(){
-    nameTorneo = prompt("Ingrese el nombre para su torneo: ");
-    document.getElementById("nameTorneo").innerHTML = nameTorneo;
-}
+
+
+
+
+
+
+
+
 
 
 function eliminarEquipo() {
@@ -361,14 +483,14 @@ function eliminarEquipo() {
         return;
     }
 
-    let equipoEliminado = equipoArray.splice(equipoIndex - 1, 1)[0];
+    let equipoEliminado = equipos.splice(equipoIndex - 1, 1)[0];
     alert(`Se ha eliminado el equipo "${equipoEliminado.name}" de la división "${equipoEliminado.division}"`);
 }
 
 
 function verClubesOrdenados() {
-    let todosClubes = [...primeraArr, ...segundaArr];
-    todosClubes.sort((a, b) => a.name.localeCompare(b.name));
+    let todosClubes = [...equipos];
+    todosClubes.sort((a) => a.name.localeCompare(b.name));
 
     let listaClubes = "Lista de Clubes Ordenados Alfabéticamente:\n\n";
     todosClubes.forEach((equipo, index) => {
@@ -380,23 +502,17 @@ function verClubesOrdenados() {
 
 
 function verTablaPosiciones() {
-    let primeraPosiciones = primeraArr.slice().sort((a, b) => b.puntos - a.puntos);
-    let segundaPosiciones = segundaArr.slice().sort((a, b) => b.puntos - a.puntos);
+    let Posiciones = equipos.slice().sort((a, b) => b.puntos - a.puntos);
   
     let tablaPosiciones = "Tabla de Posiciones - Primera División:\n";
     tablaPosiciones += "===================================\n";
-    primeraPosiciones.forEach((equipo, index) => {
-      tablaPosiciones += `${index + 1}. ${equipo.name} - Puntos: ${equipo.puntos}\n`;
-    });
-  
-    tablaPosiciones += "\nTabla de Posiciones - Segunda División:\n";
-    tablaPosiciones += "===================================\n";
-    segundaPosiciones.forEach((equipo, index) => {
+    Posiciones.forEach((equipo, index) => {
       tablaPosiciones += `${index + 1}. ${equipo.name} - Puntos: ${equipo.puntos}\n`;
     });
   
     alert(tablaPosiciones);
-  }
+};
+  
 
 
 function actualizarPuntajes() {
