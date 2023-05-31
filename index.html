@@ -17,7 +17,7 @@
             </p>
 
             <div class="boton_inicio">
-                <button class="boton_programa" onclick="initProgram()">INICIAR PROGRAMA</button>
+                <button class="boton_programa" onclick="agregarCrucesDelTorneo()">GENERAR CRUCES</button>
             </div>
 
 
@@ -38,17 +38,21 @@
 
                       <label for="equipo">Lista de participantes:</label>
                       <input type="text" id="equipo" name="equipo" placeholder="Nombre del Equipo">
-                      <input type="text" id="puntos" name="puntos" placeholder="Puntos">
                       <input type="submit" id="agregarSubmit" class="submitEquipos" value="Agregar">
 
                     </form>
 
-                    <ul id="casillaEquipos" class="casillaEquipos">
-
-                    </ul>
-
                   </ul>
-              
+                  
+                  <div class="contenedorCruces">
+                    <h3>CRUCES DEL TORNEO</h3>
+                    <ol id="casillaEquipos" class="casillaEquipos">
+                    
+                    </ol>
+
+                  </div>
+                  
+        
                   <table id="tablaPosiciones" class="tablaEquipos">
 
                     <thead class="thead">
