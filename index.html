@@ -5,43 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <title>Bunker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
+    <title>TODODEPORTES</title>
 </head>
 <body>
     <main>
-        <h1>TODOJAVASCRIPT </h1>
 
         <section class="principal">
-            <h2>Bienvenido a tododeportes!</h2>
-            <p class="texto_bienvenida">Hola, gracias por su visita en nuestro refugio del programador! Esperamos que su visita sea divertida y pueda organizar con facilidad sus torneos.
+            <h1>Bienvenido a tododeportes!</h1>
+            <p class="texto_bienvenida">Estamos desarrollando un organizador de torneos, por el momento solo tiene el formato de liga con fases, proximamente tendra la opcion de eliminatorias directas...
             </p>
-
-            <div class="boton_inicio">
-                <button class="boton_programa" onclick="agregarCrucesDelTorneo()">GENERAR CRUCES</button>
-            </div>
 
 
             <div class="programa">
               <div class="formularioTitulo">
                 <h3 id="titulo">Titulo del torneo</h3>
-                <button id="botonEdicion">Editar</button>
+                <button class="boton" id="botonEdicion">Editar</button>
                 <form id="formularioEdicion" style="display: none;">
                   <input type="text" id="inputTitulo" />
-                  <input type="submit" value="Guardar"/>
+                  <input class="boton"  type="submit" value="Guardar"/>
                 </form>
               </div>
               
                 <div class="contenedor">
                   <ul class="listaEquipos" id="agregar">
+                    <li class="generarequipos">
+                      <form id="formEquipos" class="formEquipos">
 
-                    <form id="formEquipos" class="formEquipos">
-
-                      <label for="equipo">Lista de participantes:</label>
-                      <input type="text" id="equipo" name="equipo" placeholder="Nombre del Equipo">
-                      <input type="submit" id="agregarSubmit" class="submitEquipos" value="Agregar">
-
-                    </form>
-
+                        <label  class="tituloArticulo" for="equipo">Lista de participantes:</label>
+                        <input type="text" id="equipo" name="equipo" placeholder="Nombre del Equipo">
+                        <input class="boton"  type="submit" id="agregarSubmit" class="submitEquipos" value="Agregar">
+  
+                      </form>
+                      
+                      <div class="boton_inicio">
+                        <button class="boton_programa" onclick="agregarCrucesDelTorneo()">
+        
+                          <div class="icono">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                            </svg>
+                          </div>
+                          <span class="span">CRUCES</span>
+                          
+                        </button>
+                      </div>
+                    </li>
                   </ul>
                   
                   <div class="contenedorCruces">
@@ -56,20 +67,20 @@
                   <table id="tablaPosiciones" class="tablaEquipos">
 
                     <thead class="thead">
-                      <tr>
+                      <tr class="tablaHead">
                         <th class="thead">Posición</th>
                         <th class="thead">Equipo</th>
                         <th class="thead">Puntos</th>
                       </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody class="bodyT">
                     </tbody>
                     
                     <tfoot>
                       <tr>
                         <th colspan="3" id="editarTabla" class="botonTabla">
-                          <button onclick="editarTabla()">Editar</button>
+                          <button class="boton"  onclick="editarTabla()">Editar</button>
                         </th>
                       </tr>
                     </tfoot>
@@ -83,8 +94,8 @@
         </section>
 
         <section class="principal1">
-            <h2>Bienvenido a nuestro bunker!</h2>
-            <p class="texto_bienvenida">Hola, gracias por su visita en nuestro refugio del programador! Esperamos que su visita sea divertida. Nuestro objetivo es ofrercerle al cliente soluciones a inconvenientes del daia a dia y entretenimiento, por eso les dejamos algunos ejemplos de los servicios que ofrecemos. En nuestra seccion principal tenemos un organizador de torneos para que puedan divertirse en sus competencias online
+            <h1>Bienvenido a nuestro bunker!</h1>
+            <p class="texto_bienvenida">La seccion del bunker es un rejunte de funcinoes varias basicas de practica.
             </p>
             <nav class="navBar">
                 <ul class="lista_servicios">

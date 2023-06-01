@@ -88,12 +88,12 @@ function agregarEquipoATabla(equipo, index) {
   const nuevaFila = document.createElement("tr");
 
   nuevaFila.dataset.equipoId = equipo.id;
-  nuevaFila.classList.add(`equipo-${equipo.id}`);
+  nuevaFila.classList.add(`equipo-${equipo.id}`, "equipoDes");
   nuevaFila.innerHTML = `
     <td>${index}</td>
     <td>${equipo.name}</td>
     <td>${equipo.puntos}</td>
-    <td><button class="eliminarEquipo botonEliminarEquipos">x</button></td>
+    <td><button class="botonE eliminarEquipo botonEliminarEquipos">x</button></td>
   `;
   tablaEquipos.appendChild(nuevaFila);
 
@@ -110,43 +110,60 @@ function guardarEquiposEnLocalStorage() {
   }
 }
 
-function generarCrucesPorFase(equiposDisponibles) {
+//===================================================================================================
+//===================================================================================================
+// Generar cruces en formato LIGA por fechas
+
+function generarCrucesPorFase(equiposDisponibles, crucesAnteriores) {
     const crucesFase = [];
-    const totalEquipos = equiposDisponibles.length;
   
-    for (let i = 0; i < totalEquipos / 2; i++) {
-      const equipo1 = equiposDisponibles[i];
-      const equipo2 = equiposDisponibles[totalEquipos - i - 1];
+    while (equiposDisponibles.length > 1) {
+      const equipo1 = equiposDisponibles.shift();
   
-      const cruce = {
-        equipo1,
-        equipo2
-      };
+      for (const equipo2 of equiposDisponibles) {
+        const cruce = {
+          equipo1,
+          equipo2
+        };
   
-      crucesFase.push(cruce);
+        if (!seEnfrentaronAnteriormente(cruce, crucesAnteriores)) {
+          crucesFase.push(cruce);
+          equiposDisponibles.splice(equiposDisponibles.indexOf(equipo2), 1);
+          break;
+        }
+      }
     }
   
     return crucesFase;
   }
   
+  function seEnfrentaronAnteriormente(cruce, crucesAnteriores) {
+    for (const cruceAnterior of crucesAnteriores) {
+      if (
+        (cruceAnterior.equipo1 === cruce.equipo1 && cruceAnterior.equipo2 === cruce.equipo2) ||
+        (cruceAnterior.equipo1 === cruce.equipo2 && cruceAnterior.equipo2 === cruce.equipo1)
+      ) {
+        return true;
+      }
+    }
+  
+    return false;
+  }
+  
   function generarFases(equipos) {
     const fases = [];
     const totalEquipos = equipos.length;
+    const crucesAnteriores = [];
   
-    for (let i = 0; i < totalEquipos - 1; i++) {
-      const faseActual = [];
-      const equiposDisponibles = equipos.slice();
-  
-      while (equiposDisponibles.length > 0) {
-        const crucesFase = generarCrucesPorFase(equiposDisponibles.splice(0, 2));
-        faseActual.push(...crucesFase);
-      }
-  
+    while (crucesAnteriores.length < totalEquipos - 1) {
+      const faseActual = generarCrucesPorFase(equipos.slice(), crucesAnteriores);
       fases.push(faseActual);
+      crucesAnteriores.push(...faseActual);
     }
   
     return fases;
   }
+  
   
   function agregarCrucesDelTorneo() {
     const equipos = JSON.parse(localStorage.getItem("equipos"));
@@ -199,26 +216,7 @@ function generarCrucesPorFase(equiposDisponibles) {
     localStorage.setItem("cruces", crucesJSON);
   }
 
-  function encontrarEquipoDisponible(equipo, equiposDisponibles, equiposVisitados) {
-    for (const equipoDisponible of equiposDisponibles) {
-      if (!seEnfrentaronAnteriormente(equipo, equipoDisponible, equiposVisitados)) {
-        return equipoDisponible;
-      }
-    }
-    return null;
-  }
 
-  function seEnfrentaronAnteriormente(equipo1, equipo2, equiposVisitados) {
-    for (let i = 0; i < equiposVisitados.length; i += 2) {
-      const visitado1 = equiposVisitados[i];
-      const visitado2 = equiposVisitados[i + 1];
-      if ((visitado1 === equipo1 && visitado2 === equipo2) || (visitado1 === equipo2 && visitado2 === equipo1)) {
-        return true;
-      }
-    }
-    return false;
-  }
-  
  
 
 //===================================================================================================
@@ -276,6 +274,7 @@ function editarTabla() {
         const nombreEquipo = celdaEquipo.textContent;
 
         const inputEquipo = document.createElement("input");
+        inputEquipo.classList.add("inputEquipo")
         inputEquipo.type = "text";
         inputEquipo.value = nombreEquipo;
 
@@ -299,6 +298,7 @@ function editarTabla() {
 
     const botonGuardar = document.createElement("button");
     botonGuardar.textContent = "Guardar";
+    botonGuardar.classList.add("boton");
     botonGuardar.addEventListener("click", guardarCambios);
     celdaBoton.appendChild(botonGuardar);
 }
@@ -337,6 +337,7 @@ function guardarCambios() {
 
     const botonEditar = document.createElement("button");
     botonEditar.textContent = "Editar";
+    botonEditar.classList.add("boton");
     botonEditar.addEventListener("click", editarTabla);
     celdaBoton.appendChild(botonEditar);
 }
