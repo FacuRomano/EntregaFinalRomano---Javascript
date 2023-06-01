@@ -115,106 +115,105 @@ function guardarEquiposEnLocalStorage() {
 // Generar cruces en formato LIGA por fechas
 
 function generarCrucesPorFase(equiposDisponibles, crucesAnteriores) {
-    const crucesFase = [];
+  const crucesFase = [];
   
-    while (equiposDisponibles.length > 1) {
-      const equipo1 = equiposDisponibles.shift();
+  while (equiposDisponibles.length > 1) {
+    const equipo1 = equiposDisponibles.shift();
   
-      for (const equipo2 of equiposDisponibles) {
-        const cruce = {
-          equipo1,
-          equipo2
-        };
+    for (const equipo2 of equiposDisponibles) {
+      const cruce = {
+        equipo1,
+        equipo2
+      };
   
-        if (!seEnfrentaronAnteriormente(cruce, crucesAnteriores)) {
-          crucesFase.push(cruce);
-          equiposDisponibles.splice(equiposDisponibles.indexOf(equipo2), 1);
-          break;
-        }
+      if (!seEnfrentaronAnteriormente(cruce, crucesAnteriores)) {
+        crucesFase.push(cruce);
+        equiposDisponibles.splice(equiposDisponibles.indexOf(equipo2), 1);
+        break;
       }
     }
-  
-    return crucesFase;
   }
   
-  function seEnfrentaronAnteriormente(cruce, crucesAnteriores) {
-    for (const cruceAnterior of crucesAnteriores) {
-      if (
-        (cruceAnterior.equipo1 === cruce.equipo1 && cruceAnterior.equipo2 === cruce.equipo2) ||
-        (cruceAnterior.equipo1 === cruce.equipo2 && cruceAnterior.equipo2 === cruce.equipo1)
+  return crucesFase;
+}
+  
+function seEnfrentaronAnteriormente(cruce, crucesAnteriores) {
+  for (const cruceAnterior of crucesAnteriores) {
+    if (
+      (cruceAnterior.equipo1 === cruce.equipo1 && cruceAnterior.equipo2 === cruce.equipo2) ||
+      (cruceAnterior.equipo1 === cruce.equipo2 && cruceAnterior.equipo2 === cruce.equipo1)
       ) {
         return true;
       }
-    }
+  }
+  return false;
+}
   
-    return false;
+function generarFases(equipos) {
+  const fases = [];
+  const totalEquipos = equipos.length;
+  const crucesAnteriores = [];
+  
+  while (crucesAnteriores.length < totalEquipos - 1) {
+    const faseActual = generarCrucesPorFase(equipos.slice(), crucesAnteriores);
+    fases.push(faseActual);
+    crucesAnteriores.push(...faseActual);
+  }
+
+  return fases;
+}
+  
+  
+function agregarCrucesDelTorneo() {
+  const equipos = JSON.parse(localStorage.getItem("equipos"));
+  
+  // Verificar que haya al menos 2 equipos
+  if (equipos.length < 2) {
+    alert("Debe haber al menos 2 equipos para generar los cruces del torneo.");
+    return;
   }
   
-  function generarFases(equipos) {
-    const fases = [];
-    const totalEquipos = equipos.length;
-    const crucesAnteriores = [];
+  const fases = generarFases(equipos);
+  const cruces = fases.flat();
   
-    while (crucesAnteriores.length < totalEquipos - 1) {
-      const faseActual = generarCrucesPorFase(equipos.slice(), crucesAnteriores);
-      fases.push(faseActual);
-      crucesAnteriores.push(...faseActual);
-    }
+  // Mostrar los cruces en la consola
+  console.log("Cruces del torneo:");
+  cruces.forEach((cruce, index) => {
+    console.log(`Cruce ${index + 1}:`);
+    console.log(`${cruce.equipo1?.name} vs ${cruce.equipo2?.name}`);
+  });
   
-    return fases;
-  }
+  // Obtener el contenedor de los cruces en el HTML
+  const contenedorCruces = document.getElementById("casillaEquipos");
   
+  // Limpiar el contenido anterior
+  contenedorCruces.innerHTML = "";
   
-  function agregarCrucesDelTorneo() {
-    const equipos = JSON.parse(localStorage.getItem("equipos"));
+  // Mostrar los cruces por fase en el contenedor
+  fases.forEach((fase, index) => {
+    const elementoFase = document.createElement("div");
+    elementoFase.classList.add("faseTorneo");
+    elementoFase.innerHTML = `<h4>Fase ${index + 1}:</h4>`;
   
-    // Verificar que haya al menos 2 equipos
-    if (equipos.length < 2) {
-      alert("Debe haber al menos 2 equipos para generar los cruces del torneo.");
-      return;
-    }
+    const listaCruces = document.createElement("ul");
+    listaCruces.classList.add("crucesFase");
   
-    const fases = generarFases(equipos);
-    const cruces = fases.flat();
-  
-    // Mostrar los cruces en la consola
-    console.log("Cruces del torneo:");
-    cruces.forEach((cruce, index) => {
-      console.log(`Cruce ${index + 1}:`);
-      console.log(`${cruce.equipo1?.name} vs ${cruce.equipo2?.name}`);
+    fase.forEach((cruce) => {
+      const equipo1Name = cruce.equipo1?.name || "Equipo 1";
+      const equipo2Name = cruce.equipo2?.name || "Equipo 2";
+      const cruceItem = document.createElement("li");
+      cruceItem.textContent = `${equipo1Name} vs ${equipo2Name}`;
+      listaCruces.appendChild(cruceItem);
     });
   
-    // Obtener el contenedor de los cruces en el HTML
-    const contenedorCruces = document.getElementById("casillaEquipos");
+    elementoFase.appendChild(listaCruces);
+    contenedorCruces.appendChild(elementoFase);
+  });
   
-    // Limpiar el contenido anterior
-    contenedorCruces.innerHTML = "";
-  
-    // Mostrar los cruces por fase en el contenedor
-    fases.forEach((fase, index) => {
-      const elementoFase = document.createElement("div");
-      elementoFase.classList.add("faseTorneo");
-      elementoFase.innerHTML = `<h4>Fase ${index + 1}:</h4>`;
-  
-      const listaCruces = document.createElement("ul");
-      listaCruces.classList.add("crucesFase");
-  
-      fase.forEach((cruce) => {
-        const equipo1Name = cruce.equipo1?.name || "Equipo 1";
-        const equipo2Name = cruce.equipo2?.name || "Equipo 2";
-        const cruceItem = document.createElement("li");
-        cruceItem.textContent = `${equipo1Name} vs ${equipo2Name}`;
-        listaCruces.appendChild(cruceItem);
-      });
-  
-      elementoFase.appendChild(listaCruces);
-      contenedorCruces.appendChild(elementoFase);
-    });
-  
-    // Guardar los cruces en el Local Storage
-    const crucesJSON = JSON.stringify(cruces);
-    localStorage.setItem("cruces", crucesJSON);
-  }
+  // Guardar los cruces en el Local Storage
+  const crucesJSON = JSON.stringify(cruces);
+  localStorage.setItem("cruces", crucesJSON);
+}
 
 
  
@@ -224,24 +223,24 @@ function generarCrucesPorFase(equiposDisponibles, crucesAnteriores) {
 // Agregar Equipos + Eventos
 
 function pedirEquipos(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    let name = document.querySelector("#equipo").value;
-    let puntos = 0;
+  let name = document.querySelector("#equipo").value;
+  let puntos = 0;
 
-    if (name === "" || isNaN(puntos)) {
-        alert("No ingresaste un dato válido");
-    } else {
-        let equipo = new Club(contadorE, name, puntos);
-        equipos.push(equipo);
+  if (name === "" || isNaN(puntos)) {
+    alert("No ingresaste un dato válido");
+  } else {
+    let equipo = new Club(contadorE, name, puntos);
+    equipos.push(equipo);
 
-        agregarEquipoATabla(equipo, equipos.length);
+    agregarEquipoATabla(equipo, equipos.length);
 
-        contadorE++;
+    contadorE++;
 
-        // Almacenar equipos en el Local Storage
-        guardarEquiposEnLocalStorage();
-    }
+    // Almacenar equipos en el Local Storage
+    guardarEquiposEnLocalStorage();
+  }
 
   formEquipos.reset();
 }
@@ -267,91 +266,91 @@ ebotonEditarTabla.addEventListener("click", editarTabla);
 
 
 function editarTabla() {
-    const filasEquipos = document.querySelectorAll("#tablaPosiciones tbody tr");
+  const filasEquipos = document.querySelectorAll("#tablaPosiciones tbody tr");
 
-    filasEquipos.forEach(fila => {
-        const celdaEquipo = fila.querySelector("td:nth-child(2)");
-        const nombreEquipo = celdaEquipo.textContent;
+  filasEquipos.forEach(fila => {
+      const celdaEquipo = fila.querySelector("td:nth-child(2)");
+      const nombreEquipo = celdaEquipo.textContent;
 
-        const inputEquipo = document.createElement("input");
-        inputEquipo.classList.add("inputEquipo")
-        inputEquipo.type = "text";
-        inputEquipo.value = nombreEquipo;
+      const inputEquipo = document.createElement("input");
+      inputEquipo.classList.add("inputEquipo")
+      inputEquipo.type = "text";
+      inputEquipo.value = nombreEquipo;
 
-        celdaEquipo.textContent = "";
-        celdaEquipo.appendChild(inputEquipo);
+      celdaEquipo.textContent = "";
+      celdaEquipo.appendChild(inputEquipo);
 
-        const celdaPuntos = fila.querySelector("td:nth-child(3)");
-        const puntosEquipo = celdaPuntos.textContent;
+      const celdaPuntos = fila.querySelector("td:nth-child(3)");
+      const puntosEquipo = celdaPuntos.textContent;
 
-        const inputPuntos = document.createElement("input");
-        inputPuntos.type = "number";
-        inputPuntos.value = puntosEquipo;
-        inputPuntos.classList.add("inputPuntos");
+      const inputPuntos = document.createElement("input");
+      inputPuntos.type = "number";
+      inputPuntos.value = puntosEquipo;
+      inputPuntos.classList.add("inputPuntos");
 
-        celdaPuntos.textContent = "";
-        celdaPuntos.appendChild(inputPuntos);   
-    });
+      celdaPuntos.textContent = "";
+      celdaPuntos.appendChild(inputPuntos);   
+  });
 
-    const celdaBoton = document.querySelector("#editarTabla");
-    celdaBoton.innerHTML = ""; // Limpiar el contenido existente
+  const celdaBoton = document.querySelector("#editarTabla");
+  celdaBoton.innerHTML = ""; // Limpiar el contenido existente
 
-    const botonGuardar = document.createElement("button");
-    botonGuardar.textContent = "Guardar";
-    botonGuardar.classList.add("boton");
-    botonGuardar.addEventListener("click", guardarCambios);
-    celdaBoton.appendChild(botonGuardar);
+  const botonGuardar = document.createElement("button");
+  botonGuardar.textContent = "Guardar";
+  botonGuardar.classList.add("boton");
+  botonGuardar.addEventListener("click", guardarCambios);
+  celdaBoton.appendChild(botonGuardar);
 }
 
 function guardarCambios() {
-    const filasEquipos = document.querySelectorAll("#tablaPosiciones tbody tr");
+  const filasEquipos = document.querySelectorAll("#tablaPosiciones tbody tr");
 
-    filasEquipos.forEach(fila => {
-        const celdaEquipo = fila.querySelector("td:nth-child(2)");
-        const inputEquipo = celdaEquipo.querySelector("input");
+  filasEquipos.forEach(fila => {
+    const celdaEquipo = fila.querySelector("td:nth-child(2)");
+    const inputEquipo = celdaEquipo.querySelector("input");
 
-        const celdaPuntos = fila.querySelector("td:nth-child(3)");
-        const inputPuntos = celdaPuntos.querySelector("input");
+    const celdaPuntos = fila.querySelector("td:nth-child(3)");
+    const inputPuntos = celdaPuntos.querySelector("input");
 
-        const nuevoNombreEquipo = inputEquipo.value;
-        const nuevoPuntosEquipo = parseInt(inputPuntos.value);
+    const nuevoNombreEquipo = inputEquipo.value;
+    const nuevoPuntosEquipo = parseInt(inputPuntos.value);
 
-        const equipoId = fila.dataset.equipoId;
-        const equipo = equipos.find(equipo => equipo.id === parseInt(equipoId));
-        if (equipo) {
-            equipo.name = nuevoNombreEquipo;
-            equipo.puntos = nuevoPuntosEquipo;
+    const equipoId = fila.dataset.equipoId;
+    const equipo = equipos.find(equipo => equipo.id === parseInt(equipoId));
+      if (equipo) {
+        equipo.name = nuevoNombreEquipo;
+        equipo.puntos = nuevoPuntosEquipo;
 
-            celdaEquipo.textContent = nuevoNombreEquipo;
-            celdaPuntos.textContent = nuevoPuntosEquipo;
-        }
-    });
+        celdaEquipo.textContent = nuevoNombreEquipo;
+        celdaPuntos.textContent = nuevoPuntosEquipo;
+      }
+  });
 
-    guardarEquiposEnLocalStorage();
+  guardarEquiposEnLocalStorage();
 
-    // Restablecer la tabla a su estado original
-    restablecerTabla();
+  // Restablecer la tabla a su estado original
+  restablecerTabla();
 
-    const celdaBoton = document.querySelector("#editarTabla");
-    celdaBoton.innerHTML = ""; // Limpiar el contenido existente
+  const celdaBoton = document.querySelector("#editarTabla");
+  celdaBoton.innerHTML = ""; // Limpiar el contenido existente
 
-    const botonEditar = document.createElement("button");
-    botonEditar.textContent = "Editar";
-    botonEditar.classList.add("boton");
-    botonEditar.addEventListener("click", editarTabla);
-    celdaBoton.appendChild(botonEditar);
+  const botonEditar = document.createElement("button");
+  botonEditar.textContent = "Editar";
+  botonEditar.classList.add("boton");
+  botonEditar.addEventListener("click", editarTabla);
+  celdaBoton.appendChild(botonEditar);
 }
 
 function restablecerTabla() {
-    const filasEquipos = document.querySelectorAll("#tablaPosiciones tbody tr");
+  const filasEquipos = document.querySelectorAll("#tablaPosiciones tbody tr");
 
-    filasEquipos.forEach(fila => {
-        const celdaEquipo = fila.querySelector("td:nth-child(2)");
-        const nombreEquipo = celdaEquipo.textContent;
+  filasEquipos.forEach(fila => {
+    const celdaEquipo = fila.querySelector("td:nth-child(2)");
+    const nombreEquipo = celdaEquipo.textContent;
 
-        celdaEquipo.innerHTML = nombreEquipo;
-    });
-    actualizarTablaPosiciones();
+    celdaEquipo.innerHTML = nombreEquipo;
+  });
+  actualizarTablaPosiciones();
 }
 
   
