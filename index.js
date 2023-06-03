@@ -116,45 +116,56 @@ function guardarEquiposEnLocalStorage() {
 
 function generarCrucesPorFase(equiposDisponibles, crucesAnteriores) {
   const crucesFase = [];
-  
-  while (equiposDisponibles.length > 1) {
-    const equipo1 = equiposDisponibles.shift();
-  
-    for (const equipo2 of equiposDisponibles) {
+  const equipos = equiposDisponibles.slice();
+
+  while (equipos.length > 1) {
+    const equipo1 = equipos.shift();
+
+    const equipo2 = encontrarEquipoCruce(equipo1, equipos, crucesAnteriores);
+    if (equipo2) {
       const cruce = {
         equipo1,
         equipo2
       };
-  
-      if (!seEnfrentaronAnteriormente(cruce, crucesAnteriores)) {
-        crucesFase.push(cruce);
-        equiposDisponibles.splice(equiposDisponibles.indexOf(equipo2), 1);
-        break;
-      }
+      crucesFase.push(cruce);
+      equipos.splice(equipos.indexOf(equipo2), 1);
     }
   }
-  
+
   return crucesFase;
 }
-  
+
+function encontrarEquipoCruce(equipo, equipos, crucesAnteriores) {
+  const equiposDisponibles = equipos.filter(e => !seEnfrentaronAnteriormente({ equipo1: equipo, equipo2: e }, crucesAnteriores));
+
+  if (equiposDisponibles.length === 0) {
+    return null;
+  }
+
+  const indiceAleatorio = Math.floor(Math.random() * equiposDisponibles.length);
+  return equiposDisponibles[indiceAleatorio];
+}
+
+
 function seEnfrentaronAnteriormente(cruce, crucesAnteriores) {
   for (const cruceAnterior of crucesAnteriores) {
     if (
       (cruceAnterior.equipo1 === cruce.equipo1 && cruceAnterior.equipo2 === cruce.equipo2) ||
       (cruceAnterior.equipo1 === cruce.equipo2 && cruceAnterior.equipo2 === cruce.equipo1)
-      ) {
-        return true;
-      }
+    ) {
+      return true;
+    }
   }
+
   return false;
 }
-  
+
 function generarFases(equipos) {
   const fases = [];
   const totalEquipos = equipos.length;
   const crucesAnteriores = [];
-  
-  while (crucesAnteriores.length < totalEquipos - 1) {
+
+  while (crucesAnteriores.length < totalEquipos * (totalEquipos - 1) / 2) {
     const faseActual = generarCrucesPorFase(equipos.slice(), crucesAnteriores);
     fases.push(faseActual);
     crucesAnteriores.push(...faseActual);
@@ -162,7 +173,6 @@ function generarFases(equipos) {
 
   return fases;
 }
-  
   
 function agregarCrucesDelTorneo() {
   const equipos = JSON.parse(localStorage.getItem("equipos"));

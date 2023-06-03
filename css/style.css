@@ -1,11 +1,24 @@
+.navBarI {
+  background-color: rgba(53, 53, 53, 0.719);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1; }
+
+.color {
+  color: white; }
+
+.size {
+  font-weight: bold; }
+
 .principal {
   margin: 20px;
+  margin-top: 150px;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.288);
   border-radius: 15px; }
   .principal h1 {
     font-size: calc(1.5rem + 1vw);
-    color: #e94646;
+    color: white;
     font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
@@ -14,35 +27,42 @@
     margin: 10px;
     padding: 5px;
     font-size: 1.2rem;
-    color: #ec7f7f;
+    color: white;
     font-weight: bold;
     display: flex;
     justify-content: center; }
   .principal .programa {
     padding: 20px;
     margin: 0 auto;
+    margin-top: 40px;
     width: 80%;
-    height: 300px;
-    background-color: #9e9e9e;
+    height: 100%;
+    background-color: rgba(54, 54, 54, 0.377);
+    border: solid 1px;
     border-radius: 9px;
     align-items: center; }
     .principal .programa .botonE {
-      width: auto;
+      margin: 10px;
+      padding: 5px;
+      width: min-content;
+      height: min-content;
       font-family: 'Roboto', sans-serif;
       background-color: #000000b6;
       color: white;
       border: none;
       cursor: pointer;
+      border-radius: 8px;
       text-transform: uppercase; }
       .principal .programa .botonE:hover {
         border: solid 1px; }
     .principal .programa .boton {
       padding: 10px;
-      margin: 10px;
+      margin: 20px;
       font-family: 'Roboto', sans-serif;
       background-color: #000000b6;
       color: white;
       border: none;
+      border-radius: 8px;
       cursor: pointer;
       text-transform: uppercase;
       transition: .3s ease-in-out all; }
@@ -52,7 +72,6 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      background-color: #8f68d6;
       border-radius: 3px; }
       .principal .programa .formularioTitulo h3 {
         width: 100%;
@@ -69,22 +88,26 @@
         margin: 0 auto;
         font-weight: bold;
         font-size: calc(1.5rem + 1vw);
-        background-color: #8f68d6;
+        background-color: rgba(0, 0, 0, 0);
+        color: white;
         display: flex; }
       .principal .programa .formularioTitulo #formularioEdicion {
         display: flex; }
     .principal .programa .contenedor {
+      width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between; }
       .principal .programa .contenedor .listaEquipos {
         margin: 10px auto;
         padding: 10px;
-        width: auto;
+        max-width: auto;
+        height: 400px;
         max-height: 110px;
-        background-color: rgba(255, 0, 0, 0.541);
+        background-color: rgba(83, 83, 83, 0.384);
         border-radius: 5px;
         font-size: 1rem;
+        color: white;
         list-style-type: none;
         display: flex; }
         .principal .programa .contenedor .listaEquipos form {
@@ -98,7 +121,10 @@
             font-weight: bold; }
           .principal .programa .contenedor .listaEquipos form input {
             margin-bottom: 10px;
-            padding: 5px; }
+            padding: 5px;
+            background-color: rgba(85, 85, 85, 0.247);
+            border: solid 1px;
+            border-radius: 8px; }
         .principal .programa .contenedor .listaEquipos .boton_inicio {
           margin: 20px auto;
           display: flex;
@@ -109,8 +135,8 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            height: 80px;
-            background: #221fbdd7;
+            height: 50px;
+            background: #221fbd5d;
             color: #fff;
             font-family: 'Roboto', sans-serif;
             font-size: 20px;
@@ -145,15 +171,19 @@
               opacity: 1; }
             .principal .programa .contenedor .listaEquipos .boton_inicio .boton_programa:hover .span {
               left: 30%; }
+        .principal .programa .contenedor .listaEquipos .imagenTorneo {
+          margin: 50px;
+          width: 200px;
+          height: 200px; }
       .principal .programa .contenedor .contenedorCruces {
         margin: 10px auto;
         padding: 5px 20px 20px 20px;
         width: auto;
-        background-color: rgba(17, 0, 255, 0.541);
+        background-color: rgba(17, 0, 255, 0.274);
         border-radius: 5px;
         color: white;
         overflow: auto;
-        max-height: 200px;
+        max-height: 550px;
         display: flex;
         flex-direction: column; }
         .principal .programa .contenedor .contenedorCruces h3 {
@@ -175,9 +205,13 @@
         border-collapse: collapse;
         margin: 10px auto;
         padding: 10px;
-        background-color: rgba(255, 0, 0, 0.541);
+        width: auto;
+        overflow: auto;
+        max-height: 550px;
+        background-color: rgba(255, 0, 0, 0.329);
         border-radius: 5px;
-        font-size: 1rem; }
+        font-size: 1rem;
+        color: white; }
         .principal .programa .contenedor .tablaEquipos .inputEquipo {
           width: 80%; }
         .principal .programa .contenedor .tablaEquipos .inputPuntos {
@@ -186,7 +220,9 @@
           text-align: center; }
         .principal .programa .contenedor .tablaEquipos .tablaHead th {
           background-color: #b9b9b9;
-          padding: 10px; }
+          padding: 10px;
+          margin: 10px;
+          color: black; }
         .principal .programa .contenedor .tablaEquipos .thead th {
           margin: 5px;
           padding: 5px;
@@ -296,14 +332,60 @@
           display: block; }
 
 body {
-  background-color: #0e5c74;
+  background-image: linear-gradient(to right, #222222, #fc701f);
   width: 100%; }
   body main {
     width: auto; }
 
+.visualTorneo {
+  margin: 80px auto;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  border: solid 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2); }
+  .visualTorneo h3 {
+    margin: 5px;
+    color: white;
+    font-size: 1.5rem; }
+
+.torneo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px; }
+
+.nivel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  width: 100%; }
+
+.nivel-1 {
+  margin-bottom: 10px; }
+
+.nivel-2 {
+  margin-bottom: 10px; }
+
+.nivel-3 {
+  margin-bottom: 10px; }
+
+.casilla {
+  width: 100px;
+  height: 50px;
+  background-color: #e9e9e9;
+  border: 1px solid #ccc;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
 @media screen and (max-width: 1024px) {
   body {
-    background-color: #0e5c74;
+    background-color: #3b3b3b;
     width: 100%; }
     body main .principal {
       margin: 20px;
