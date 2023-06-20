@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Link a fuentes de Googlee -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
+    
+  <!-- Link a Boostrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+  crossorigin="anonymous">
+
+  <!-- Link Css -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  <!-- Favicon-->
+  <link rel="icon" href="../assets/icons8-deporte-64.png">    
+  <title>TODODEPORTES</title>
+
+</head>
+
+<body>
+
+  <main id="inicio">
+    <nav class="navbar navbar-expand-lg navBarI">
+      <div class="container-fluid">
+        <a class="navbar-brand size color" href="#">TODODERPOTES</a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link color" aria-current="page" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link color" href="#">Torneos</a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link color" href="#">Eventos</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link color" href="#">Comunidades</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+
+    <section class="principal">
+      <h1 class="size">TORNEOS ROUND ROBIN</h1>
+      <p class="texto_bienvenida">Ligas deportivas en sistema de fechas.</p>
+
+
+      <div class="programa">
+        
+        <div class="formularioTitulo">
+          <h3 id="titulo">Titulo del torneo</h3>
+          <button class="boton" id="botonEdicion">Editar</button>
+          <form id="formularioEdicion" style="display: none;">
+            <input type="text" id="inputTitulo" />
+            <input class="boton"  type="submit" value="Guardar"/>
+          </form>
+        </div>
+        
+        <div class="contenedor">
+          <ul class="listaEquipos" id="agregar">
+            <li class="generarequipos">
+              <form id="formEquipos" class="formEquipos">
+                <label  class="tituloArticulo" for="equipo">Lista de participantes:</label>
+                <input type="text" id="equipo" name="equipo" placeholder="Nombre del Equipo">
+                <input class="boton"  type="submit" id="agregarSubmit" class="submitEquipos" value="Agregar">
+                <img class="imagenTorneo" src="../assets/torneo.png" alt="imagenTorneo">
+
+              </form>
+            </li>
+            <li>
+              <div class="boton_inicio">
+              <button class="boton_programa" onclick="agregarCrucesDelTorneo()">
+
+                <div class="icono">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                  </svg>
+                </div>
+                <span class="span">CRUCES</span>
+                  
+              </button>
+            </div>
+          </li>
+          </ul>
+            
+          <div class="contenedorCruces">
+            <h3>CRUCES DEL TORNEO</h3>
+            <ol id="casillaEquipos" class="casillaEquipos">
+              
+            </ol>
+
+          </div>
+            
+  
+          <table id="tablaPosiciones" class="tablaEquipos">
+
+            <thead class="thead">
+              <tr class="tablaHead">
+                <th class="thead">Posición</th>
+                <th class="thead">Equipo</th>
+                <th class="thead">Puntos</th>
+              </tr>
+           </thead>
+
+            <tbody class="bodyT">
+            </tbody>
+              
+            <tfoot>
+              <tr>
+                <th colspan="3" id="editarTabla" class="botonTabla">
+                  <button class="boton"  onclick="editarTabla()">Editar</button>
+                </th>
+              </tr>
+            </tfoot>
+
+          </table>
+        </div>
+      </div>
+        
+
+      
+  </section>
+
+        
+    </main>
+    <script src="../js/index.js"></script>
+    
+</body>
+</html>

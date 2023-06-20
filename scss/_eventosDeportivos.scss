@@ -1,3 +1,5 @@
+
+//Seccion liga por equipos
 .principal{
     margin: 20px;
     margin-top: 150px;
@@ -27,11 +29,12 @@
         margin: 0 auto;
         margin-top: 40px;
         width: 80%;
-        height: 100%;
+        min-height: 700px;
         background-color: rgba(54, 54, 54, 0.377);
         border: solid 1px;
         border-radius: 9px;
         align-items: center;
+        box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
 
         .botonE{
             margin: 10px;
@@ -49,6 +52,7 @@
                 border: solid 1px;
             }
         }
+
         .boton{
             padding: 10px;
             margin: 20px;
@@ -63,13 +67,16 @@
             &:hover{
                 border: solid 2px;
             }
-            
-        }
-        .formularioTitulo{
+          }
+        
+          .formularioTitulo{
+            margin: 10px;
             width: 100%;
+            height: 100%;
             display: flex ;
             justify-content: center;
             border-radius: 3px;
+            box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
 
             h3{
                 width: 100%;
@@ -99,7 +106,10 @@
         
         
         .contenedor {
+            margin: 15px;
+            margin-top: 30px;
             width:100%;
+            min-height: 300px;
             display: flex;
             flex-direction:row;
             justify-content: space-between;
@@ -109,14 +119,14 @@
                 margin: 10px auto;
                 padding: 10px;
                 max-width:auto;
-                height: 400px;
-                max-height: 110px;
                 background-color: rgba(83, 83, 83, 0.384);
                 border-radius: 5px;
                 font-size: 1rem;
                 color: white;
                 list-style-type: none;
+                box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
                 display: flex;
+                flex-direction: column;
                 
                 form {
                     display: flex;
@@ -138,19 +148,22 @@
                       border-radius: 8px;
                     }
                 }
+
                 .boton_inicio {
                     margin: 20px auto;
                     display: flex;
                     justify-content: center;
-                    max-width: 400px;
+                    max-width: 250px;
+                    min-height: 60px;
                   
                     .boton_programa {
+                        margin: 0 auto;
                         display: inline-flex;
                         align-items: center;
                         justify-content: center;
                         width: 100%;
-                        height: 50px;
-                        background: #221fbd5d;
+                        max-height: 80px;
+                        background: #221fbd1f;
                         color: #fff;
                         font-family: 'Roboto', sans-serif;
                         font-size: 20px;
@@ -199,8 +212,109 @@
                   }
                   .imagenTorneo{
                     margin:50px;
-                    width: 200px;
-                    height: 200px;
+                    width: 80px;
+                    height: 80px;
+                  }
+            }
+            .listaEquipos{
+                margin: 10px auto;
+                padding: 10px;
+                max-width:auto;
+                background-color: rgba(83, 83, 83, 0.384);
+                border-radius: 5px;
+                font-size: 1rem;
+                color: white;
+                list-style-type: none;
+                box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+                display: flex;
+                flex-direction: column;
+                
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                  
+                    label {
+                        margin-bottom: 5px;
+                        font-family: 'Roboto', sans-serif;
+                        font-size: calc(0.4rem + 1vw);
+                        font-weight: bold;
+                    }
+                  
+                    input {
+                      margin-bottom: 10px;
+                      padding: 5px;
+                      background-color: rgba(85, 85, 85, 0.247);
+                      border: solid 1px;
+                      border-radius: 8px;
+                    }
+                }
+
+                .boton_inicio {
+                    margin: 20px auto;
+                    display: flex;
+                    justify-content: center;
+                    max-width: 250px;
+                    min-height: 60px;
+                  
+                    .boton_programa {
+                        margin: 0 auto;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        max-height: 80px;
+                        background: #221fbd1f;
+                        color: #fff;
+                        font-family: 'Roboto', sans-serif;
+                        font-size: 20px;
+                        font-weight: 500;
+                        border: none;
+                        cursor: pointer;
+                        text-transform: uppercase;
+                        transition: .3s ease all;
+                        border-radius: 5px;
+                        position: relative;
+                        overflow: hidden;
+                  
+                        .icono {
+                            display: flex;
+                            align-items: center;
+                            position: absolute;
+                            z-index: 2;
+                            left: -40px;
+                            transition: .3s ease-in-out all;
+                            opacity: 0;
+                            svg {
+                                color: #fff;
+                                width: 35px;
+                                height: 35px;
+                        }
+                      }
+                  
+                      .span {
+                        position: relative;
+                        transition: .4s ease-in-out all;
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                      }
+                  
+                      &:hover {
+                        .icono {
+                          left: calc(100% - 50px);
+                          opacity: 1;
+                        }
+                        .span {
+                          left: 30%;
+                        }
+                      }
+                    }
+                  }
+                  .imagenTorneo{
+                    margin:50px;
+                    width: 80px;
+                    height: 80px;
                   }
             }
 
@@ -208,11 +322,15 @@
                 margin: 10px auto;
                 padding: 5px 20px 20px 20px ;
                 width:auto;
+                min-height: 200px;
+                height: 300px;
+                max-height: 700px;
                 background-color: rgba(17, 0, 255, 0.274);
                 border-radius: 5px;
                 color: white;
                 overflow: auto;
-                max-height: 550px;
+                position: relative;
+                box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
                 display: flex;
                 flex-direction: column;
                 h3{
@@ -240,12 +358,15 @@
                 margin: 10px auto;
                 padding: 10px;
                 width: auto;
+                min-height: 200px;
+                height: 300px;
+                max-height: 700px;
                 overflow: auto;
-                max-height: 550px;
                 background-color: rgba(255, 0, 0, 0.329);
                 border-radius: 5px;
                 font-size: 1rem;
                 color: white;
+                box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
                 .inputEquipo{
                     width: 80%;
                 }
@@ -273,3 +394,401 @@
         }
     }
 }
+
+
+//Seccion single elimination
+.principalSE{
+  margin: 20px;
+  margin-top: 150px;
+  padding: 10px;
+  border-radius: 15px;
+
+  h1{
+      font-size:calc(1.5rem + 1vw);
+      color: rgb(255, 255, 255);
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      text-decoration: underline;}
+
+  .texto_bienvenida{
+      margin: 10px;
+      padding: 5px;
+      font-size: 1.2rem;
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+      display: flex;
+      justify-content: center;}  
+        
+        
+  .programaSE{
+      padding: 20px;
+      margin: 0 auto;
+      margin-top: 40px;
+      width: 80%;
+      min-height: 700px;
+      background-color: rgba(54, 54, 54, 0.377);
+      border: solid 1px;
+      border-radius: 9px;
+      align-items: center;
+      box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+
+      .botonE{
+          margin: 10px;
+          padding: 5px;
+          width: min-content;
+          height: min-content;
+          font-family: 'Roboto', sans-serif;
+          background-color: #000000b6;
+          color: white;
+          border: none;
+          cursor: pointer;
+          border-radius: 8px;
+          text-transform: uppercase;
+          &:hover{
+              border: solid 1px;
+          }
+      }
+
+      .boton{
+          padding: 10px;
+          margin: 20px;
+          font-family: 'Roboto', sans-serif;
+          background-color: #000000b6;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          text-transform: uppercase;
+          transition: .3s ease-in-out all;
+          &:hover{
+              border: solid 2px;
+          }
+        }
+      
+        .formularioTitulo{
+          margin: 10px;
+          width: 100%;
+          height: 100%;
+          display: flex ;
+          justify-content: center;
+          border-radius: 3px;
+          box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+
+          h3{
+              width: 100%;
+              margin: 0 auto;
+              font-weight: bold;
+              font-size: calc(1rem + 1vw);
+              font-family: 'Roboto', sans-serif;
+              color: white;
+              align-items: center;
+              display: flex;
+              justify-content: center;}
+
+              #inputTitulo{
+                  width: 100%;
+                  margin: 0 auto;
+                  font-weight: bold;
+                  font-size: calc(1.5rem + 1vw);
+                  background-color: rgba(0, 0, 0, 0);
+                  color: white;
+                  display: flex;
+          }
+
+          #formularioEdicion{
+              display: flex;
+          }
+      }
+      
+      
+      .contenedorSE {
+          margin: 15px;
+          margin-top: 30px;
+          width:100%;
+          min-height: 300px;
+          display: flex;
+          flex-direction:row;
+          justify-content: space-between;
+
+
+          .listaEquipos{
+              margin: 10px auto;
+              padding: 10px;
+              max-width:auto;
+              background-color: rgba(83, 83, 83, 0.384);
+              border-radius: 5px;
+              font-size: 1rem;
+              color: white;
+              list-style-type: none;
+              box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+              display: flex;
+              flex-direction: column;
+              
+              form {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                
+                  label {
+                      margin-bottom: 5px;
+                      font-family: 'Roboto', sans-serif;
+                      font-size: calc(0.4rem + 1vw);
+                      font-weight: bold;
+                  }
+                
+                  input {
+                    margin-bottom: 10px;
+                    padding: 5px;
+                    background-color: rgba(85, 85, 85, 0.247);
+                    border: solid 1px;
+                    border-radius: 8px;
+                  }
+              }
+
+              .boton_inicio {
+                  margin: 20px auto;
+                  display: flex;
+                  justify-content: center;
+                  max-width: 250px;
+                  min-height: 60px;
+                
+                  .boton_programa {
+                      margin: 0 auto;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      width: 100%;
+                      max-height: 80px;
+                      background: #221fbd1f;
+                      color: #fff;
+                      font-family: 'Roboto', sans-serif;
+                      font-size: 20px;
+                      font-weight: 500;
+                      border: none;
+                      cursor: pointer;
+                      text-transform: uppercase;
+                      transition: .3s ease all;
+                      border-radius: 5px;
+                      position: relative;
+                      overflow: hidden;
+                
+                      .icono {
+                          display: flex;
+                          align-items: center;
+                          position: absolute;
+                          z-index: 2;
+                          left: -40px;
+                          transition: .3s ease-in-out all;
+                          opacity: 0;
+                          svg {
+                              color: #fff;
+                              width: 35px;
+                              height: 35px;
+                      }
+                    }
+                
+                    .span {
+                      position: relative;
+                      transition: .4s ease-in-out all;
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                    }
+                
+                    &:hover {
+                      .icono {
+                        left: calc(100% - 50px);
+                        opacity: 1;
+                      }
+                      .span {
+                        left: 30%;
+                      }
+                    }
+                  }
+                }
+                .imagenTorneo{
+                  margin:50px;
+                  width: 80px;
+                  height: 80px;
+                }
+          }
+          .listaEquipos{
+              margin: 10px auto;
+              padding: 10px;
+              max-width:auto;
+              background-color: rgba(83, 83, 83, 0.384);
+              border-radius: 5px;
+              font-size: 1rem;
+              color: white;
+              list-style-type: none;
+              box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+              display: flex;
+              flex-direction: column;
+              
+              form {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                
+                  label {
+                      margin-bottom: 5px;
+                      font-family: 'Roboto', sans-serif;
+                      font-size: calc(0.4rem + 1vw);
+                      font-weight: bold;
+                  }
+                
+                  input {
+                    margin-bottom: 10px;
+                    padding: 5px;
+                    background-color: rgba(85, 85, 85, 0.247);
+                    border: solid 1px;
+                    border-radius: 8px;
+                  }
+              }
+
+              .boton_inicio {
+                  margin: 20px auto;
+                  display: flex;
+                  justify-content: center;
+                  max-width: 250px;
+                  min-height: 60px;
+                
+                  .boton_programa {
+                      margin: 0 auto;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      width: 100%;
+                      max-height: 80px;
+                      background: #221fbd1f;
+                      color: #fff;
+                      font-family: 'Roboto', sans-serif;
+                      font-size: 20px;
+                      font-weight: 500;
+                      border: none;
+                      cursor: pointer;
+                      text-transform: uppercase;
+                      transition: .3s ease all;
+                      border-radius: 5px;
+                      position: relative;
+                      overflow: hidden;
+                
+                      .icono {
+                          display: flex;
+                          align-items: center;
+                          position: absolute;
+                          z-index: 2;
+                          left: -40px;
+                          transition: .3s ease-in-out all;
+                          opacity: 0;
+                          svg {
+                              color: #fff;
+                              width: 35px;
+                              height: 35px;
+                      }
+                    }
+                
+                    .span {
+                      position: relative;
+                      transition: .4s ease-in-out all;
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                    }
+                
+                    &:hover {
+                      .icono {
+                        left: calc(100% - 50px);
+                        opacity: 1;
+                      }
+                      .span {
+                        left: 30%;
+                      }
+                    }
+                  }
+                }
+                .imagenTorneo{
+                  margin:50px;
+                  width: 80px;
+                  height: 80px;
+                }
+          }
+
+          .contenedorCruces{
+              margin: 10px auto;
+              padding: 5px 20px 20px 20px ;
+              width:auto;
+              min-height: 200px;
+              height: 300px;
+              max-height: 700px;
+              background-color: rgba(17, 0, 255, 0.274);
+              border-radius: 5px;
+              color: white;
+              overflow: auto;
+              position: relative;
+              box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+              display: flex;
+              flex-direction: column;
+              h3{
+                  margin-bottom: 5px;
+                  font-family: 'Roboto', sans-serif;
+                  font-size: calc(0.4rem + 1vw);
+                  font-weight: bold;
+                  text-decoration: underline;
+              }
+              .casillaEquipos{
+                  padding: 10px;
+                  margin: 0 auto;
+                  list-style-type: decimal;
+                  li{
+                      width: 100%;
+                      margin: 0 auto;
+                      background-color: rgba(128, 128, 128, 0.555);
+                      font-size: 1.5rem;
+                  }
+              }
+          }
+          
+          .tablaEquiposSE{
+              border-collapse: collapse;
+              margin: 10px auto;
+              padding: 10px;
+              width: auto;
+              min-height: 200px;
+              height: 300px;
+              max-height: 700px;
+              overflow: auto;
+              background-color: rgba(255, 0, 0, 0.329);
+              border-radius: 5px;
+              font-size: 1rem;
+              color: white;
+              box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+              .inputEquipo{
+                  width: 80%;
+              }
+              .inputPuntos{
+                  width: 80%;
+              }
+
+              .equipoDes{
+                  text-align: center;
+              }
+              
+              .tablaHead th{
+                  background-color: rgb(185, 185, 185);
+                  padding: 10px;
+                  margin: 10px;
+                  color: black;
+              }
+              .thead th{
+                  margin: 5px;
+                  padding: 5px;
+                  font-family: 'Roboto', sans-serif;
+                  font-size: calc(0.3rem + 1vw);  
+              }
+          }
+      }
+  }
+}
+

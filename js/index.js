@@ -1,3 +1,5 @@
+//===================================================================================================
+//Organizador de torneos Funciones
 const tituloElemento = document.getElementById("titulo");
 const botonEdicion = document.getElementById("botonEdicion");
 const formularioEdicion = document.getElementById("formularioEdicion");
@@ -203,7 +205,7 @@ function agregarCrucesDelTorneo() {
   fases.forEach((fase, index) => {
     const elementoFase = document.createElement("div");
     elementoFase.classList.add("faseTorneo");
-    elementoFase.innerHTML = `<h4>Fase ${index + 1}:</h4>`;
+    elementoFase.innerHTML = `<h4>Fecha ${index + 1}:</h4>`;
   
     const listaCruces = document.createElement("ul");
     listaCruces.classList.add("crucesFase");
@@ -273,7 +275,6 @@ function eliminarEquipoTabla(idEquipo) {
 // Editar la Tabla creada
 const eEditarTabla = document.querySelector("#editarTabla button");
 ebotonEditarTabla.addEventListener("click", editarTabla);
-
 
 function editarTabla() {
   const filasEquipos = document.querySelectorAll("#tablaPosiciones tbody tr");
@@ -381,11 +382,25 @@ if (typeof Storage !== "undefined") {
 
 
 
+//===================================================================================================
+//===================================================================================================
+// API Y FETCH
 
+var myHeaders = new Headers();
+myHeaders.append("x-rapidapi-key", "57f0694b37e90f2651fcf60342353d85");
+myHeaders.append("x-rapidapi-host", " api-football-v1.p.rapidapi.com");
 
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
 
-
- 
+const url = "https://api-football-v1.p.rapidapi.com/{endpoint}";
+fetch(url)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
  
 
 //

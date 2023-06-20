@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Link a fuentes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
+   
+  <!-- Link a Boostrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+  crossorigin="anonymous">
+   
+  <!-- Link Css -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  
+  <!-- Favicon-->
+  <link rel="icon" href="../assets/icons8-deporte-64.png">  
+  <title>TODODEPORTES</title>
+
+</head>
+<body>
+
+  <main id="inicio">
+
+    <nav class="navBarI navbar navbar-expand-lg ">
+
+      <div class="container-fluid">
+
+        <a class="navbar-brand color" href="#">
+          <img class="logo" src="../assets/logoTD.png" alt="logoTD">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link color" aria-current="page" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link color" href="#">Torneos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link color" href="#">Eventos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link color" href="#">Comunidades</a>
+            </li>
+          </ul>
+
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="formularioLigas">
+      <form>
+        <label for="liga">Selecciona una liga de fútbol:</label>
+        <select id="liga" name="liga">
+          <option value="128">Liga Argentina</option>
+          <option value="39">Premier League</option>
+          <option value="140">La Liga</option>
+          <option value="135">Serie A</option>
+          <option value="78">Bundesliga</option>
+          <option value="61">Ligue 1</option>
+        </select>
+        <button type="button" id="enviarBtn" class="boton">Enviar</button>
+      </form>
+      <h3>Tabla de posiciones</h3>
+    </div>
+    
+    <div class="containerLigas">
+      <div id="tablaPosicionesContainer" class="tablaPosiciones">
+        <ul id="ligaElecta" class="ligaElecta"><li>1. <img src="https://media-2.api-sports.io/football/teams/451.png" alt="Boca Juniors"> Boca Juniors - 52</li><li>2. <img src="https://media-2.api-sports.io/football/teams/436.png" alt="Racing Club"> Racing Club - 50</li><li>3. <img src="https://media-3.api-sports.io/football/teams/435.png" alt="River Plate"> River Plate - 47</li><li>4. <img src="https://media-3.api-sports.io/football/teams/445.png" alt="Huracan"> Huracan - 47</li><li>5. <img src="https://media-3.api-sports.io/football/teams/455.png" alt="Atletico Tucuman"> Atletico Tucuman - 46</li><li>6. <img src="https://media-3.api-sports.io/football/teams/460.png" alt="San Lorenzo"> San Lorenzo - 43</li><li>7. <img src="https://media-2.api-sports.io/football/teams/452.png" alt="Tigre"> Tigre - 43</li><li>8. <img src="https://media-3.api-sports.io/football/teams/458.png" alt="Argentinos JRS"> Argentinos JRS - 42</li><li>9. <img src="https://media-1.api-sports.io/football/teams/434.png" alt="Gimnasia L.P."> Gimnasia L.P. - 41</li><li>10. <img src="https://media-2.api-sports.io/football/teams/444.png" alt="Patronato"> Patronato - 40</li><li>11. <img src="https://media-3.api-sports.io/football/teams/457.png" alt="Newells Old Boys"> Newells Old Boys - 40</li><li>12. <img src="https://media-2.api-sports.io/football/teams/442.png" alt="Defensa Y Justicia"> Defensa Y Justicia - 40</li><li>13. <img src="https://media-1.api-sports.io/football/teams/456.png" alt="Talleres Cordoba"> Talleres Cordoba - 35</li><li>14. <img src="https://media-2.api-sports.io/football/teams/453.png" alt="Independiente"> Independiente - 35</li><li>15. <img src="https://media-3.api-sports.io/football/teams/439.png" alt="Godoy Cruz"> Godoy Cruz - 35</li><li>16. <img src="https://media-1.api-sports.io/football/teams/1065.png" alt="Central Cordoba de Santiago"> Central Cordoba de Santiago - 34</li><li>17. <img src="https://media-3.api-sports.io/football/teams/2432.png" alt="Barracas Central"> Barracas Central - 34</li><li>18. <img src="https://media-3.api-sports.io/football/teams/450.png" alt="Estudiantes L.P."> Estudiantes L.P. - 33</li><li>19. <img src="https://media-1.api-sports.io/football/teams/1064.png" alt="Platense"> Platense - 32</li><li>20. <img src="https://media-3.api-sports.io/football/teams/437.png" alt="Rosario Central"> Rosario Central - 32</li><li>21. <img src="https://media-3.api-sports.io/football/teams/474.png" alt="Sarmiento Junin"> Sarmiento Junin - 32</li><li>22. <img src="https://media-2.api-sports.io/football/teams/441.png" alt="Union Santa Fe"> Union Santa Fe - 32</li><li>23. <img src="https://media-1.api-sports.io/football/teams/459.png" alt="Arsenal Sarandi"> Arsenal Sarandi - 30</li><li>24. <img src="https://media-1.api-sports.io/football/teams/449.png" alt="Banfield"> Banfield - 30</li><li>25. <img src="https://media-2.api-sports.io/football/teams/448.png" alt="Colon Santa Fe"> Colon Santa Fe - 29</li><li>26. <img src="https://media-3.api-sports.io/football/teams/438.png" alt="Velez Sarsfield"> Velez Sarsfield - 28</li><li>27. <img src="https://media-3.api-sports.io/football/teams/446.png" alt="Lanus"> Lanus - 21</li><li>28. <img src="https://media-2.api-sports.io/football/teams/463.png" alt="Aldosivi"> Aldosivi - 16</li></ul>
+      </div>
+  
+      <div id="carouselExampleFade" class="carousel slide carousel-fade carruselLigas">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../assets/Logo_lpf_afa.png" class="d-block w-100" alt="logo Liga">
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/Premier League.png" class="d-block w-100" alt="logo Liga">
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/LaLiga_Santander_logo_(stacked).svg.png" class="d-block w-100" alt="Logo Liga">
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/Serie_A.png" class="d-block w-100" alt="logo Liga">
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/584d86b2367b6a13e54477d5.png" class="d-block w-100" alt="logo Liga">
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/ligue-1-logo-0.png" class="d-block w-100" alt="logo Liga.">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    </div>
+    
+  </main>  
+  <footer class="footer">
+    <img class="logo" src="../assets/logoTD.png" alt="logoTD">
+    <div class="redesSociales">
+      <a href="#" class="iconosRedes"></a>
+      <a href="#" class="iconosRedes"></a>
+      <a href="#" class="iconosRedes"></a>
+      <a href="#" class="iconosRedes"></a>
+    </div>
+    <ul class="footerMenu">
+      <li class="item">Legal</li>
+      <li class="item">Cookies</li>
+      <li class="item">Privacy</li>
+      <li class="item">shipping</li>
+      <li class="item">Refounds</li>
+    </ul>
+    <span class="copyright">&copy;2023, Romano's Studio. All rights reserved.</span>
+  </footer>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+  <script src=".../js/apis.js"></script>
+  <script src="../js/index.js"></script>
+</body>
+</html>
