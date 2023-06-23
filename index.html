@@ -14,6 +14,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
     crossorigin="anonymous">
 
+    <!-- Link Toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <!-- Link Css -->
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 
@@ -62,22 +65,23 @@
       <p class="texto_bienvenida">La mejor web para organizar torneos deportivos.</p>
   </section>
 
-    <section class="visualTorneoIndex">
-      <div class="containerBox">
-        <a href="./pages/torneoRR.html">
-          <img src="./assets/torneoRR.jpg" alt="imagenTorneo">
-          <p>Round Robin</p>
+    <section class="imagesContainer">
+      <div class="imageBox">
+        <a class="link" href="./pages/torneoRR.html">
+          <img src="./assets/liga_futbol-750x375.jpg" alt="imagenTorneo">
         </a>
-        
-      </div>
+        <div class="shadow"></div>
+        <p>Ligas de futbol</p>
+    </div>
 
-      <div class="containerBox">
-        <a href="./pages/torneos.html">
+      <div class="imageBox">
+        <a class="link" href="./pages/torneos.html">
           <img src="./assets/torneoLiga (1).jpg" alt="imagenTorneo">
-          <p>Torneo Liga</p>
         </a>
-        
-      </div>
+        <div class="shadow"></div>
+        <p>Crea tu Liga</p>
+    </div>
+
     </section>
 
     <div class="descripcionNos">
@@ -106,9 +110,11 @@
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./index.js"></script>
   <script src="./js/apis.js"></script>
+  <script src="./js/sweetAlert.js"></script>
     
 </body>
 </html>

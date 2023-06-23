@@ -28,7 +28,7 @@ document.getElementById("enviarBtn").addEventListener("click", function() {
         var teamLogo = team.team.logo;
 
         var listItem = document.createElement("li");
-        listItem.innerHTML = teamPosition + ". <img src='" + teamLogo + "' alt='" + teamName + "'> " + teamName + " - " + teamPoints;
+        listItem.innerHTML = teamPosition + ". <img src='" + teamLogo + "' alt='" + teamName + "'> " + teamName + " - " + teamPoints + "pts";
         tablaPosicionesContainer.appendChild(listItem);
       });
     } else {
@@ -42,3 +42,9 @@ document.getElementById("enviarBtn").addEventListener("click", function() {
 
   request.send();
 });
+
+Swal.fire({
+  title: "Bienve"
+}
+  
+);

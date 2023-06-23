@@ -1,4 +1,5 @@
 //===================================================================================================
+//===================================================================================================
 //Organizador de torneos Funciones
 const tituloElemento = document.getElementById("titulo");
 const botonEdicion = document.getElementById("botonEdicion");
@@ -21,12 +22,36 @@ botonEdicion.addEventListener("click", function() {
 formularioEdicion.addEventListener("submit", function(event) {
     event.preventDefault();
     const nuevoTitulo = inputTitulo.value.trim();
+    if (nuevoTitulo.length > 0){
     tituloElemento.innerText = nuevoTitulo;
     tituloElemento.style.display = "flex";
     formularioEdicion.style.display = "none";
 
     // Almacenar el nuevo título en el Local Storage
     localStorage.setItem("titulo", nuevoTitulo);
+      Swal.fire({
+        title: nuevoTitulo,
+        text: "Se establecio el nombre de su torneo correctamente",
+        icon: "success",
+        backdrop: "true",
+        timer: "5000",
+        toast: "true"
+      });
+    }else{
+      Swal.fire({
+        title: nuevoTitulo,
+        title: "Titulo",
+        text: "hubo un error al cambiar el nombre de su torneo",
+        icon: "error",
+        backdrop: "true",
+        timer: "5000",
+        toast: "true"
+      });
+    }
+    
+
+    
+    
 });
 
 //===================================================================================================
@@ -44,15 +69,35 @@ class Club {
   }
 }
 
+
 const formEquipos = document.querySelector("#formEquipos");
 const listaEquipos = document.querySelector("#listaEquipos");
 const agregar = document.querySelector("#agregar");
 const equiposHidden = document.querySelector("#equiposHidden");
 const casillaEquipos = document.querySelector("#casillaEquipos");
-
+const toastify = document.querySelector("#agregarSubmit");
 formEquipos.addEventListener("submit", pedirEquipos);
 let contadorE = 1;
 
+toastify.addEventListener("click", ()=>{
+  Toastify({
+    text: "Equipo Creado",
+    duration: 3000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "left", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} // Callback after click
+  }).showToast();
+
+})
+
+ 
 const tablaEquipos = document.querySelector(".tablaEquipos tbody");
 
 //===================================================================================================
@@ -109,6 +154,23 @@ function guardarEquiposEnLocalStorage() {
     localStorage.setItem("equipos", equiposJSON);
   } else {
     alert("El almacenamiento local no es compatible en este navegador");
+  }
+
+  
+}
+
+function guardarCrucesEnLocalStorage() {
+  // Verificar si el almacenamiento local está disponible
+  if (typeof(Storage) !== "undefined") {
+    // Convertir los cruces a formato JSON
+    const crucesJSON = JSON.stringify(cruces);
+
+    // Guardar los cruces en el almacenamiento local
+    localStorage.setItem("cruces", crucesJSON);
+
+    console.log("Los cruces se han guardado en el almacenamiento local.");
+  } else {
+    console.log("El almacenamiento local no está disponible en este navegador.");
   }
 }
 
@@ -178,55 +240,86 @@ function generarFases(equipos) {
   
 function agregarCrucesDelTorneo() {
   const equipos = JSON.parse(localStorage.getItem("equipos"));
-  
+
   // Verificar que haya al menos 2 equipos
   if (equipos.length < 2) {
-    alert("Debe haber al menos 2 equipos para generar los cruces del torneo.");
-    return;
+    Swal.fire({
+      title: "Error",
+      text: "Debe haber al menos 2 equipos para crear un torneo",
+      icon: "error",
+      backdrop: "true",
+      timer: "5000",
+    });
+    return; // Salir de la función si no hay suficientes equipos
+  } else {
+    Swal.fire({
+      title: "Buen Trabajo",
+      text: "Su torneo fue creado con éxito",
+      icon: "success",
+      backdrop: "true",
+      timer: "5000",
+    });
   }
-  
+
   const fases = generarFases(equipos);
   const cruces = fases.flat();
-  
+
   // Mostrar los cruces en la consola
   console.log("Cruces del torneo:");
   cruces.forEach((cruce, index) => {
     console.log(`Cruce ${index + 1}:`);
     console.log(`${cruce.equipo1?.name} vs ${cruce.equipo2?.name}`);
   });
-  
+
   // Obtener el contenedor de los cruces en el HTML
   const contenedorCruces = document.getElementById("casillaEquipos");
-  
+
   // Limpiar el contenido anterior
   contenedorCruces.innerHTML = "";
-  
+
   // Mostrar los cruces por fase en el contenedor
   fases.forEach((fase, index) => {
     const elementoFase = document.createElement("div");
     elementoFase.classList.add("faseTorneo");
-    elementoFase.innerHTML = `<h4>Fecha ${index + 1}:</h4>`;
-  
+    elementoFase.innerHTML = `<h4 class= "tituloFecha"> Fecha ${index + 1}:</h4>`;
+
     const listaCruces = document.createElement("ul");
     listaCruces.classList.add("crucesFase");
-  
+
     fase.forEach((cruce) => {
       const equipo1Name = cruce.equipo1?.name || "Equipo 1";
       const equipo2Name = cruce.equipo2?.name || "Equipo 2";
+
       const cruceItem = document.createElement("li");
-      cruceItem.textContent = `${equipo1Name} vs ${equipo2Name}`;
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.addEventListener("click", function () {
+        if (checkbox.checked) {
+          cruceItem.style.textDecoration = "line-through";
+        } else {
+          cruceItem.style.textDecoration = "none";
+        }
+      });
+
+      const textoCruce = document.createElement("span");
+      textoCruce.textContent = `${equipo1Name} vs ${equipo2Name}`;
+
+      
+      cruceItem.appendChild(textoCruce);
+      cruceItem.appendChild(checkbox);
       listaCruces.appendChild(cruceItem);
     });
-  
+
     elementoFase.appendChild(listaCruces);
     contenedorCruces.appendChild(elementoFase);
   });
-  
+
   // Guardar los cruces en el Local Storage
   const crucesJSON = JSON.stringify(cruces);
-  localStorage.setItem("cruces", crucesJSON);
+  localStorage.setItem("cruces", JSON.stringify(cruces));
+  guardarCrucesEnLocalStorage();
 }
-
 
  
 
@@ -378,6 +471,7 @@ if (typeof Storage !== "undefined") {
 }
  
  
+
 
 
 
